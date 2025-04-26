@@ -21,7 +21,8 @@ abstract class AppHelper {
     ),
     OnBoardingModel(
       image: Assets.imagesOnBoardingImage5,
-      title: "يمكنك إضافة  ما إذا كان الطالب دفع هذا الشهر أم لا وإضافة تاريخ الدفع",
+      title:
+          "يمكنك إضافة  ما إذا كان الطالب دفع هذا الشهر أم لا وإضافة تاريخ الدفع",
     ),
   ];
 }

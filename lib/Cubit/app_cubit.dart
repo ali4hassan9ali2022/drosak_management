@@ -10,4 +10,14 @@ class AppCubit extends Cubit<AppState> {
     currentIndex = index;
     emit(ChangePageViewAppState());
   }
+
+  void changeDotIndicator(int index) {
+    currentIndex = index;
+    emit(ChangeDotIndicatorAppState());
+    pageController.animateToPage(
+      currentIndex,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
 }

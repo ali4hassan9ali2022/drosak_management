@@ -11,6 +11,9 @@ class OnBoardingViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<AppCubit>(context);
     return PageView.builder(
+      onPageChanged: (value) {
+        cubit.changePageView(value);
+      },
       controller: cubit.pageController,
       itemCount: AppHelper.onBoarding.length,
       itemBuilder: (context, index) {
