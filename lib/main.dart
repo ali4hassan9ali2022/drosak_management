@@ -1,7 +1,9 @@
 // import 'dart:io';
+import 'package:drosak_management/Cubit/app_cubit.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
 import 'package:drosak_management/Featured/onBoarding/Views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:device_info_plus/device_info_plus.dart';
 
 void main() async {
@@ -14,13 +16,16 @@ class DrosakManagement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        SplashView.id: (context) => SplashView(),
-        OnBoardingView.id: (context) => OnBoardingView(),
-      },
-      initialRoute: SplashView.id,
+    return BlocProvider(
+      create: (context) => AppCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          SplashView.id: (context) => SplashView(),
+          OnBoardingView.id: (context) => OnBoardingView(),
+        },
+        initialRoute: SplashView.id,
+      ),
     );
   }
 }
