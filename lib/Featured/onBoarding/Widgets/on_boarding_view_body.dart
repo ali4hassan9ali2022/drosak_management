@@ -9,7 +9,7 @@ class OnBoardingViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return OnBoardingItem(
       image: Assets.imagesOnBoardingImage1,
-      title: "يمكنك إضافة  بعض المراحل التعليمية ",
+      title: "",
     );
   }
 }
