@@ -1,13 +1,10 @@
-// import 'dart:io';
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/app_cubit.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
-import 'package:drosak_management/Featured/onBoarding/Views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:device_info_plus/device_info_plus.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
