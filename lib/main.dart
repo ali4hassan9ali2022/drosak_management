@@ -1,4 +1,5 @@
 // import 'dart:io';
+import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/app_cubit.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
@@ -22,14 +23,11 @@ class DrosakManagement extends StatelessWidget {
       create: (context) => AppCubit(),
       child: ScreenUtilInit(
         designSize: Size(SizeConfig.kWidth375, SizeConfig.kHeight812),
-        minTextAdapt: true,
-        splitScreenMode: true,
+        // minTextAdapt: true,
+        // splitScreenMode: true,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          routes: {
-            SplashView.id: (context) => SplashView(),
-            OnBoardingView.id: (context) => OnBoardingView(),
-          },
+          routes: AppHelper.routes,
           initialRoute: SplashView.id,
         ),
       ),

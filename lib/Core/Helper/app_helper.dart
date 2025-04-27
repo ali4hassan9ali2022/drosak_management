@@ -1,5 +1,9 @@
 import 'package:drosak_management/Core/Utils/assets.dart';
+import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
+import 'package:drosak_management/Featured/explore/Views/explore_view.dart';
 import 'package:drosak_management/Featured/onBoarding/Models/on_boarding_model.dart';
+import 'package:drosak_management/Featured/onBoarding/Views/on_boarding_view.dart';
+import 'package:flutter/material.dart';
 
 abstract class AppHelper {
   static List onBoarding = [
@@ -25,4 +29,10 @@ abstract class AppHelper {
           "يمكنك إضافة  ما إذا كان الطالب دفع هذا الشهر أم لا وإضافة تاريخ الدفع",
     ),
   ];
+
+  static Map<String, Widget Function(BuildContext)> routes = {
+    SplashView.id: (context) => SplashView(),
+    OnBoardingView.id: (context) => OnBoardingView(),
+    ExploreView.id: (context) => ExploreView(),
+  };
 }
