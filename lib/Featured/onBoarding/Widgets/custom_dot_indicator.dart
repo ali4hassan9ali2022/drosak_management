@@ -2,8 +2,10 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
+import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/app_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDotIndcator extends StatelessWidget {
   const CustomDotIndcator({super.key, required this.cubit});
@@ -14,9 +16,9 @@ class CustomDotIndcator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColor.primaryColor,
-      height: 38,
+      height: SizeConfig.kHeight38.h,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding:  EdgeInsets.symmetric(horizontal: SizeConfig.kPadding12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
