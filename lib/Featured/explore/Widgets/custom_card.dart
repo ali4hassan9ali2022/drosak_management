@@ -1,15 +1,13 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
-import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({
-    super.key,
-  });
-
+  const CustomCard({super.key, required this.items});
+  final ExploreModel items;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,29 +29,18 @@ class CustomCard extends StatelessWidget {
         children: [
           Align(
             alignment: AlignmentDirectional.topStart,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-    
-                // width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColor.primaryColor,
-                  borderRadius: BorderRadius.circular(
-                    SizeConfig.borderRadius12,
-                  ),
-                ),
-                child: Text(
-                  "المراحل التعليمية",
-                  style: AppStyles.styleMedium15(context),
-                ),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+              margin: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+              // width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColor.primaryColor,
+                borderRadius: BorderRadius.circular(SizeConfig.borderRadius12),
               ),
+              child: Text(items.title, style: AppStyles.styleMedium15(context)),
             ),
           ),
-          SvgPicture.asset(
-            Assets.imagesOnBoardingImage1,
-            height: SizeConfig.kHeight63,
-          ),
+          SvgPicture.asset(items.image, height: SizeConfig.kHeight63),
         ],
       ),
     );

@@ -1,12 +1,13 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
 import 'package:drosak_management/Featured/explore/Widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 
 class CustomCardItem extends StatelessWidget {
-  const CustomCardItem({super.key});
-
+  const CustomCardItem({super.key, required this.items});
+final ExploreModel items;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,7 +32,9 @@ class CustomCardItem extends StatelessWidget {
             ),
           ),
         ),
-        CustomCard(),
+        CustomCard(
+          items: items,
+        ),
         Positioned(
           bottom: -16,
           left: -16,

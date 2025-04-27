@@ -30,13 +30,16 @@ abstract class AppHelper {
           "يمكنك إضافة  ما إذا كان الطالب دفع هذا الشهر أم لا وإضافة تاريخ الدفع",
     ),
   ];
-static List explore = [
-  ExploreModel(title: "المجموعات", image: Assets.imagesOnBoardingImage2),
-  ExploreModel(title: "المراحل التعليمية", image: Assets.imagesOnBoardingImage1),
-  ExploreModel(title: "الحضور", image: Assets.imagesOnBoardingImage4),
-  ExploreModel(title: "الطلاب", image: Assets.imagesOnBoardingImage3),
-  ExploreModel(title: "الدفع", image: Assets.imagesOnBoardingImage5),
-];
+  static List explore = [
+    ExploreModel(
+      title: "المراحل التعليمية",
+      image: Assets.imagesOnBoardingImage1,
+    ),
+    ExploreModel(title: "المجموعات", image: Assets.imagesOnBoardingImage2),
+    ExploreModel(title: "الطلاب", image: Assets.imagesOnBoardingImage3),
+    ExploreModel(title: "الحضور", image: Assets.imagesOnBoardingImage4),
+    ExploreModel(title: "الدفع", image: Assets.imagesOnBoardingImage5),
+  ];
   static Map<String, Widget Function(BuildContext)> routes = {
     SplashView.id: (context) => SplashView(),
     OnBoardingView.id: (context) => OnBoardingView(),
