@@ -1,5 +1,6 @@
 import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
+import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
 import 'package:drosak_management/Featured/explore/Views/explore_view.dart';
 import 'package:drosak_management/Featured/onBoarding/Models/on_boarding_model.dart';
 import 'package:drosak_management/Featured/onBoarding/Views/on_boarding_view.dart';
@@ -29,7 +30,13 @@ abstract class AppHelper {
           "يمكنك إضافة  ما إذا كان الطالب دفع هذا الشهر أم لا وإضافة تاريخ الدفع",
     ),
   ];
-
+static List explore = [
+  ExploreModel(title: "المجموعات", image: Assets.imagesOnBoardingImage2),
+  ExploreModel(title: "المراحل التعليمية", image: Assets.imagesOnBoardingImage1),
+  ExploreModel(title: "الحضور", image: Assets.imagesOnBoardingImage4),
+  ExploreModel(title: "الطلاب", image: Assets.imagesOnBoardingImage3),
+  ExploreModel(title: "الدفع", image: Assets.imagesOnBoardingImage5),
+];
   static Map<String, Widget Function(BuildContext)> routes = {
     SplashView.id: (context) => SplashView(),
     OnBoardingView.id: (context) => OnBoardingView(),
