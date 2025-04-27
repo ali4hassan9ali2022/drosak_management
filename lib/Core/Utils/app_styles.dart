@@ -10,6 +10,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w700,
     );
   }
+
   static TextStyle styleMedium15(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 15),
@@ -18,6 +19,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle styleMedium20(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 20),
@@ -26,6 +28,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle styleMedium8(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 8),
@@ -34,6 +37,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle styleMedium16(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 16),
@@ -42,6 +46,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle styleMedium10(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 10),
@@ -50,6 +55,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle styleMedium12(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 12),
@@ -58,6 +64,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle styleMedium14(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 14),

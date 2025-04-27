@@ -7,9 +7,12 @@ class ExploreView extends StatelessWidget {
   static String id = "ExploreView";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.secondColorBlock,
-      body: ExploreViewBody(),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: AppColor.secondColorBlock,
+        body: ExploreViewBody(),
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Featured/explore/Widgets/custom_app_bar_explore_view.dart';
+import 'package:drosak_management/Featured/explore/Widgets/custom_grid_view.dart';
 import 'package:flutter/material.dart';
 
 class ExploreViewBody extends StatelessWidget {
@@ -10,14 +11,14 @@ class ExploreViewBody extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: SizeConfig.kHeight40),
           CustomAppBarExploreView(),
           SizedBox(height: SizeConfig.kHeight24),
+          CustomGridView(),
         ],
       ),
     );
   }
 }
-
