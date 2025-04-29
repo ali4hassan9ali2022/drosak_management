@@ -1,12 +1,14 @@
+import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Cubit/app_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(InitialAppState());
-  int currentIndex= 0;
+  int currentIndex = 0;
   PageController pageController = PageController();
   void changePageView(int index) {
     currentIndex = index;
@@ -22,24 +24,49 @@ class AppCubit extends Cubit<AppState> {
       curve: Curves.easeInOut,
     );
   }
+
   List<BottomNavigationBarItem> icons = [
     BottomNavigationBarItem(
-      icon: SvgPicture.asset(Assets.imagesPaymentIcon),
+      activeIcon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
+      ),
+      icon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(Color(0xff1e1e1e), BlendMode.srcIn),
+      ),
       label: "الدفع",
     ),
+
     BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
+      ),
       icon: SvgPicture.asset(Assets.imagesAudience),
       label: "الحضور",
     ),
     BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
+      ),
       icon: SvgPicture.asset(Assets.imagesStudents),
       label: "الطلاب",
     ),
     BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
+      ),
       icon: SvgPicture.asset(Assets.imagesGroup),
       label: "المجموعات",
     ),
     BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
+      ),
       icon: SvgPicture.asset(Assets.imagesEducationalStages),
       label: "المراحل التعليمية",
     ),

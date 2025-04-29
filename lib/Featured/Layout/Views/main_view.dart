@@ -1,4 +1,5 @@
 import 'package:drosak_management/Cubit/app_cubit.dart';
+import 'package:drosak_management/Cubit/app_state.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,9 +10,20 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<AppCubit>(context);
-    return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(cubit: cubit),
+    return BlocConsumer<AppCubit, AppState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          bottomNavigationBar: CustomBottomNavigationBar(
+            onTap: (value) {
+              cubit.changeBottomNavBar(value);
+            },
+            cubit: cubit,
+          ),
+        );
+      },
     );
   }
 }
-

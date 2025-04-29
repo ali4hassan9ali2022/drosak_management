@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({
     super.key,
-    required this.cubit,
+    required this.cubit, required this.onTap,
   });
 
   final AppCubit cubit;
-
+final Function(int) onTap;
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+
+      onTap: onTap,
       backgroundColor: Color(0xff1E1E1E),
       type: BottomNavigationBarType.fixed,
       unselectedItemColor: Color(0xff373731),
