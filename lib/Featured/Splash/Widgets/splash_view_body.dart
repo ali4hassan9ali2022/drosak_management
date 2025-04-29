@@ -1,3 +1,4 @@
+import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Featured/Splash/Widgets/sliding_image_bottom_right.dart';
 import 'package:drosak_management/Featured/Splash/Widgets/sliding_image_logo.dart';
 import 'package:drosak_management/Featured/Splash/Widgets/sliding_image_top.dart';
@@ -51,11 +52,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       duration: Duration(seconds: 1),
     )..addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          OnBoardingView.id,
-          (route) => false,
-        );
+        AppHelper.navgatorpushNamedAndRemoveUntil(context, pushNamed: OnBoardingView.id, isRoute: false);
       }
     });
     animationBottom = Tween<Offset>(

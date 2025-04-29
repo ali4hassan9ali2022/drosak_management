@@ -1,5 +1,6 @@
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Featured/Layout/Views/main_view.dart';
 import 'package:drosak_management/Featured/explore/Widgets/custom_card_item.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,11 @@ class CustomGridView extends StatelessWidget {
           mainAxisSpacing: 46,
         ),
         itemBuilder:
-            (context, index) => CustomCardItem(items: AppHelper.explore[index]),
+            (context, index) => GestureDetector(
+              onTap: () {
+                AppHelper.navgatorPushNamed(context, pushNamed: MainView.id);
+              },
+              child: CustomCardItem(items: AppHelper.explore[index])),
       ),
     );
   }

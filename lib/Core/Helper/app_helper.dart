@@ -1,4 +1,5 @@
 import 'package:drosak_management/Core/Utils/assets.dart';
+import 'package:drosak_management/Featured/Layout/Views/main_view.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
 import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
 import 'package:drosak_management/Featured/explore/Views/explore_view.dart';
@@ -44,5 +45,26 @@ abstract class AppHelper {
     SplashView.id: (context) => SplashView(),
     OnBoardingView.id: (context) => OnBoardingView(),
     ExploreView.id: (context) => ExploreView(),
+    MainView.id: (context) => MainView(),
   };
+ static void navgatorPushNamed(
+    BuildContext context, {
+    required String pushNamed,
+    Object? arguments,
+  }) {
+    Navigator.of(context).pushNamed(pushNamed, arguments: arguments);
+  }
+
+ static void navgatorpushNamedAndRemoveUntil(
+    BuildContext context, {
+    required String pushNamed,
+    Object? arguments,
+    bool isRoute = true,
+  }) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      pushNamed,
+      (route) => isRoute,
+      arguments: arguments,
+    );
+  }
 }

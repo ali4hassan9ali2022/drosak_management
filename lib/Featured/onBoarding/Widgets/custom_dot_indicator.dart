@@ -27,9 +27,11 @@ class CustomDotIndcator extends StatelessWidget {
           GestureDetector(
             onTap: () {
               //! Go to Next View
-              Navigator.of(
+              AppHelper.navgatorpushNamedAndRemoveUntil(
                 context,
-              ).pushNamedAndRemoveUntil(ExploreView.id, (route) => false);
+                pushNamed: ExploreView.id,
+                isRoute: false,
+              );
             },
             child: Text("تخطى", style: AppStyles.styleMedium15(context)),
           ),
@@ -50,9 +52,11 @@ class CustomDotIndcator extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (cubit.currentIndex == AppHelper.onBoarding.length - 1) {
-                Navigator.of(
+                AppHelper.navgatorpushNamedAndRemoveUntil(
                   context,
-                ).pushNamedAndRemoveUntil(ExploreView.id, (route) => false);
+                  pushNamed: ExploreView.id,
+                  isRoute: false,
+                );
               } else {
                 cubit.pageController.nextPage(
                   duration: Duration(milliseconds: 500),
