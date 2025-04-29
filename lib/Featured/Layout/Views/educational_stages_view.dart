@@ -1,5 +1,5 @@
-import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/custom_educational_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,23 +9,16 @@ class EducationalStagesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.kPadding18.w),
+      padding: EdgeInsets.symmetric(
+        horizontal: SizeConfig.kPadding18.w,
+        vertical: SizeConfig.kPadding18.h,
+      ),
       child: Column(
         children: [
-          SizedBox(height: SizeConfig.kHeight18),
-
-          Container(
-            width: double.infinity,
-            height: SizeConfig.kHeight103,
-            decoration: ShapeDecoration(
-              color: Colors.red,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: AppColor.primaryColor, width: 2),
-              ),
-            ),
-          ),
+          CustomEducationalItem(),
         ],
       ),
     );
   }
 }
+

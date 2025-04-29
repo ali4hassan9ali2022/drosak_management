@@ -23,7 +23,11 @@ class CustomGridView extends StatelessWidget {
               onTap: () {
                 onTap(index);
               },
-              child: CustomCardItem(items: AppHelper.explore[index])),
+              child: CustomCardItem(
+                index: index + 1,
+                items: AppHelper.explore[index],
+              ),
+            ),
       ),
     );
   }

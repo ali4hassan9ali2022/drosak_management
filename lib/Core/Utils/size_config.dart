@@ -5,6 +5,9 @@ abstract class SizeConfig {
   static double kPadding18 = 18;
   static double kPadding12 = 12;
   static double kPadding10 = 10;
+  static double kPadding25 = 25;
+  static double kPadding6 = 6;
+  static double kPadding20 = 20;
   //! Height
   static double kHeight812 = 812;
   static double kHeight72 = 72.h;

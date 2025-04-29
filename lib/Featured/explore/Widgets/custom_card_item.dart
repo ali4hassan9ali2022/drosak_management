@@ -6,8 +6,9 @@ import 'package:drosak_management/Featured/explore/Widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 
 class CustomCardItem extends StatelessWidget {
-  const CustomCardItem({super.key, required this.items});
+  const CustomCardItem({super.key, required this.items, required this.index});
 final ExploreModel items;
+final int index;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -51,7 +52,7 @@ final ExploreModel items;
             backgroundColor: AppColor.primaryColor,
             child: Center(
               child: Text(
-                "I",
+                index.toString(),
                 style: AppStyles.styleMedium12(
                   context,
                 ).copyWith(color: AppColor.secondColorBlock),
