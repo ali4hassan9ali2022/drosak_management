@@ -1,6 +1,11 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Cubit/app_state.dart';
+import 'package:drosak_management/Featured/Layout/Views/attendance_view.dart';
+import 'package:drosak_management/Featured/Layout/Views/educational_stages_view.dart';
+import 'package:drosak_management/Featured/Layout/Views/groub_view.dart';
+import 'package:drosak_management/Featured/Layout/Views/payment_view.dart';
+import 'package:drosak_management/Featured/Layout/Views/students_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +15,7 @@ class AppCubit extends Cubit<AppState> {
   AppCubit() : super(InitialAppState());
   int currentIndex = 0;
   PageController pageController = PageController();
+  PageController pageMainController = PageController();
   void changePageView(int index) {
     currentIndex = index;
     emit(ChangePageViewAppState());
@@ -77,8 +83,19 @@ class AppCubit extends Cubit<AppState> {
     "الحضور",
     "الدفع",
   ];
+  List<Widget> pages= [
+    EducationalStagesView(),
+    GroubView(),
+    StudentsView(),
+    AttendanceView(),
+    PaymentView(),
+  ];
   void changeBottomNavBar(int index) {
     currentIndex = index;
     emit(ChangeBottomNavBarAppState());
+  }
+  void changePageMainView(int index) {
+    currentIndex = index;
+    emit(ChangePageMainViewAppState());
   }
 }

@@ -16,9 +16,7 @@ class MainView extends StatelessWidget {
     cubit.changeBottomNavBar(index);
     cubit.currentIndex == index;
     return BlocConsumer<AppCubit, AppState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -30,6 +28,21 @@ class MainView extends StatelessWidget {
               },
               currentIndex: cubit.currentIndex,
               items: cubit.icons,
+            ),
+            body: PageView.builder(
+              itemCount: cubit.pages.length,
+              controller: cubit.pageMainController,
+              onPageChanged: (value) {
+                cubit.changePageMainView(value);
+              },
+              itemBuilder: (context, index) {
+                return AnimatedSwitcher(
+                  duration: Duration(milliseconds: 500),
+                  switchInCurve: Curves.easeInOut,
+                  
+                  child: cubit.pages[cubit.currentIndex],
+                );
+              },
             ),
           ),
         );
