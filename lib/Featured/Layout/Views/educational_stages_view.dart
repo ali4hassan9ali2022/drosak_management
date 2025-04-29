@@ -13,12 +13,14 @@ class EducationalStagesView extends StatelessWidget {
         horizontal: SizeConfig.kPadding18.w,
         vertical: SizeConfig.kPadding18.h,
       ),
-      child: Column(
-        children: [
-          CustomEducationalItem(),
-        ],
+      child: ListView.separated(
+        physics: BouncingScrollPhysics(),
+        itemBuilder:
+            (context, index) => CustomEducationalItem(index: index + 1),
+        separatorBuilder:
+            (context, index) => SizedBox(height: SizeConfig.kHeight16),
+        itemCount: 3,
       ),
     );
   }
 }
-
