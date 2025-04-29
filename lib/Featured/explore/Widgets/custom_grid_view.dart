@@ -1,6 +1,6 @@
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
-import 'package:drosak_management/Featured/Layout/Views/main_view.dart';
+import 'package:drosak_management/Featured/Layout/main_view.dart';
 import 'package:drosak_management/Featured/explore/Widgets/custom_card_item.dart';
 import 'package:flutter/material.dart';
 

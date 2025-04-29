@@ -1,5 +1,5 @@
 import 'package:drosak_management/Core/Utils/assets.dart';
-import 'package:drosak_management/Featured/Layout/Views/main_view.dart';
+import 'package:drosak_management/Featured/Layout/main_view.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
 import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
 import 'package:drosak_management/Featured/explore/Views/explore_view.dart';
