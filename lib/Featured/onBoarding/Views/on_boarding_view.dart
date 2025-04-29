@@ -1,3 +1,4 @@
+import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Cubit/app_cubit.dart';
 import 'package:drosak_management/Cubit/app_state.dart';
 import 'package:drosak_management/Featured/onBoarding/Widgets/custom_dot_indicator.dart';
@@ -15,6 +16,7 @@ class OnBoardingView extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: AppColor.colorWhite,
           bottomNavigationBar: CustomDotIndcator(cubit: cubit),
           body: OnBoardingViewBody(),
         );
@@ -22,4 +24,3 @@ class OnBoardingView extends StatelessWidget {
     );
   }
 }
-

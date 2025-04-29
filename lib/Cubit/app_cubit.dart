@@ -1,6 +1,8 @@
+import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Cubit/app_state.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(InitialAppState());
@@ -20,4 +22,26 @@ class AppCubit extends Cubit<AppState> {
       curve: Curves.easeInOut,
     );
   }
+  List<BottomNavigationBarItem> icons = [
+    BottomNavigationBarItem(
+      icon: SvgPicture.asset(Assets.imagesPaymentIcon),
+      label: "الدفع",
+    ),
+    BottomNavigationBarItem(
+      icon: SvgPicture.asset(Assets.imagesAudience),
+      label: "الحضور",
+    ),
+    BottomNavigationBarItem(
+      icon: SvgPicture.asset(Assets.imagesStudents),
+      label: "الطلاب",
+    ),
+    BottomNavigationBarItem(
+      icon: SvgPicture.asset(Assets.imagesGroup),
+      label: "المجموعات",
+    ),
+    BottomNavigationBarItem(
+      icon: SvgPicture.asset(Assets.imagesEducationalStages),
+      label: "المراحل التعليمية",
+    ),
+  ];
 }

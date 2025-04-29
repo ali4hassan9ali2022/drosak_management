@@ -1,4 +1,5 @@
 import 'package:drosak_management/Core/Helper/app_helper.dart';
+import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/app_cubit.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
@@ -23,6 +24,9 @@ class DrosakManagement extends StatelessWidget {
         // minTextAdapt: true,
         // splitScreenMode: true,
         child: MaterialApp(
+          theme: ThemeData(
+            scaffoldBackgroundColor: AppColor.secondColorBlock
+          ),
           debugShowCheckedModeBanner: false,
           routes: AppHelper.routes,
           initialRoute: SplashView.id,
