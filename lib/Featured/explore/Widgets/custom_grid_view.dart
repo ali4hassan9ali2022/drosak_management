@@ -1,12 +1,11 @@
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
-import 'package:drosak_management/Featured/Layout/main_view.dart';
 import 'package:drosak_management/Featured/explore/Widgets/custom_card_item.dart';
 import 'package:flutter/material.dart';
 
 class CustomGridView extends StatelessWidget {
-  const CustomGridView({super.key});
-
+  const CustomGridView({super.key, required this.onTap});
+  final void Function(int index) onTap;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -22,7 +21,7 @@ class CustomGridView extends StatelessWidget {
         itemBuilder:
             (context, index) => GestureDetector(
               onTap: () {
-                AppHelper.navgatorPushNamed(context, pushNamed: MainView.id);
+                onTap(index);
               },
               child: CustomCardItem(items: AppHelper.explore[index])),
       ),

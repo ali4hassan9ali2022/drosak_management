@@ -31,28 +31,8 @@ class AppCubit extends Cubit<AppState> {
         Assets.imagesPaymentIcon,
         colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
       ),
-      icon: SvgPicture.asset(
-        Assets.imagesPaymentIcon,
-        colorFilter: ColorFilter.mode(Color(0xff1e1e1e), BlendMode.srcIn),
-      ),
-      label: "الدفع",
-    ),
-
-    BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        Assets.imagesPaymentIcon,
-        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
-      ),
-      icon: SvgPicture.asset(Assets.imagesAudience),
-      label: "الحضور",
-    ),
-    BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        Assets.imagesPaymentIcon,
-        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
-      ),
-      icon: SvgPicture.asset(Assets.imagesStudents),
-      label: "الطلاب",
+      icon: SvgPicture.asset(Assets.imagesEducationalStages),
+      label: "المراحل التعليمية",
     ),
     BottomNavigationBarItem(
       activeIcon: SvgPicture.asset(
@@ -67,9 +47,35 @@ class AppCubit extends Cubit<AppState> {
         Assets.imagesPaymentIcon,
         colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
       ),
-      icon: SvgPicture.asset(Assets.imagesEducationalStages),
-      label: "المراحل التعليمية",
+      icon: SvgPicture.asset(Assets.imagesStudents),
+      label: "الطلاب",
     ),
+    BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
+      ),
+      icon: SvgPicture.asset(Assets.imagesAudience),
+      label: "الحضور",
+    ),
+    BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(AppColor.primaryColor, BlendMode.srcIn),
+      ),
+      icon: SvgPicture.asset(
+        Assets.imagesPaymentIcon,
+        colorFilter: ColorFilter.mode(Color(0xff1e1e1e), BlendMode.srcIn),
+      ),
+      label: "الدفع",
+    ),
+  ];
+  List<String> titles = [
+    "المراحل التعليميمة",
+    "المجموعات",
+    "الطلاب",
+    "الحضور",
+    "الدفع",
   ];
   void changeBottomNavBar(int index) {
     currentIndex = index;
