@@ -44,4 +44,8 @@ class AppCubit extends Cubit<AppState> {
       label: "المراحل التعليمية",
     ),
   ];
+  void changeBottomNavBar(int index) {
+    currentIndex = index;
+    emit(ChangeBottomNavBarAppState());
+  }
 }
