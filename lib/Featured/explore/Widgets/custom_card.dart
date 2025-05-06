@@ -11,7 +11,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.kWidth138,
+      // width: SizeConfig.kWidth138,
       // height: SizeConfig.kHeight108,
       decoration: BoxDecoration(
         color: AppColor.secondColorBlock,
@@ -35,12 +35,25 @@ class CustomCard extends StatelessWidget {
               // width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColor.primaryColor,
-                borderRadius: BorderRadius.circular(SizeConfig.borderRadius12),
+                borderRadius: BorderRadius.circular(
+                  SizeConfig.borderRadius12,
+                ),
               ),
-              child: Text(items.title, style: AppStyles.styleMedium15(context)),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  items.title,
+                  style: AppStyles.styleMedium15(context),
+                ),
+              ),
             ),
           ),
-          SvgPicture.asset(items.image, height: SizeConfig.kHeight63),
+          Expanded(
+            child: SvgPicture.asset(
+              items.image,
+              height: SizeConfig.kHeight63,
+            ),
+          ),
         ],
       ),
     );

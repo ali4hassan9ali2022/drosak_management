@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCardEducational extends StatelessWidget {
-  const CustomCardEducational({
-    super.key,
-  });
+  const CustomCardEducational({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class CustomCardEducational extends StatelessWidget {
           ),
         ],
         color: Colors.transparent,
-    
+
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SizeConfig.borderRadius18),
           side: BorderSide(color: AppColor.primaryColor, width: 1),
@@ -44,13 +42,18 @@ class CustomCardEducational extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "الصف الأول الإعدادي",
-                    style: AppStyles.styleMedium16(context),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "الصف الأول الإعدادي",
+                      style: AppStyles.styleMedium16(context),
+                    ),
                   ),
-                  Text(
-                    "تلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلاتلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلاتلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلا",
-                    style: AppStyles.styleMedium10(context),
+                  Expanded(
+                    child: Text(
+                      "تلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلاتلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلاتلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلا",
+                      style: AppStyles.styleMedium10(context),
+                    ),
                   ),
                 ],
               ),
@@ -61,9 +64,12 @@ class CustomCardEducational extends StatelessWidget {
               horizontal: SizeConfig.kPadding10.w,
               vertical: SizeConfig.kPadding20.h,
             ),
-            child: CircleAvatar(
-              radius: 32,
-              backgroundImage: AssetImage(Assets.imagesTest),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: CircleAvatar(
+                radius: 32,
+                backgroundImage: AssetImage(Assets.imagesTest),
+              ),
             ),
           ),
         ],

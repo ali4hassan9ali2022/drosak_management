@@ -16,7 +16,8 @@ class EducationalStagesView extends StatelessWidget {
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
         itemBuilder:
-            (context, index) => CustomEducationalItem(index: index + 1),
+            (context, index) =>
+                Expanded(child: CustomEducationalItem(index: index + 1)),
         separatorBuilder:
             (context, index) => SizedBox(height: SizeConfig.kHeight16),
         itemCount: 3,
