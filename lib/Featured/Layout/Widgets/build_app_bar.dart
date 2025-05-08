@@ -5,25 +5,22 @@ import 'package:flutter/material.dart';
 
 AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
   return AppBar(
-              automaticallyImplyLeading: false,
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.add_circle_outline,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.search, color: Colors.white, size: 24),
-                ),
-              ],
-              backgroundColor: AppColor.primaryColor,
-              title: Text(
-                cubit.titles[cubit.currentIndex],
-                style: AppStyles.styleMedium15(context),
-              ),
-            );
+    automaticallyImplyLeading: false,
+    elevation: 0,
+    actions: [
+      IconButton(
+        onPressed: () {},
+        icon: Icon(Icons.add_circle_outline, color: Colors.white, size: 24),
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: Icon(Icons.search, color: Colors.white, size: 24),
+      ),
+    ],
+    backgroundColor: AppColor.primaryColor,
+    title: Text(
+      cubit.titles[cubit.currentIndex],
+      style: AppStyles.styleMedium15(context),
+    ),
+  );
 }

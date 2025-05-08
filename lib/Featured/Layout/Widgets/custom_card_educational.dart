@@ -27,7 +27,7 @@ class CustomCardEducational extends StatelessWidget {
         color: Colors.transparent,
 
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(SizeConfig.borderRadius18),
+          borderRadius: BorderRadius.circular(SizeConfig.borderRadius18.r),
           side: BorderSide(color: AppColor.primaryColor, width: 1),
         ),
       ),
@@ -51,6 +51,8 @@ class CustomCardEducational extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
                       "تلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلاتلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلاتلك الصف هو الصف الاعدادي وفي ثلاث طلاب مثلا",
                       style: AppStyles.styleMedium10(context),
                     ),
@@ -67,7 +69,7 @@ class CustomCardEducational extends StatelessWidget {
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: CircleAvatar(
-                radius: 32,
+                radius: 32.r,
                 backgroundImage: AssetImage(Assets.imagesTest),
               ),
             ),

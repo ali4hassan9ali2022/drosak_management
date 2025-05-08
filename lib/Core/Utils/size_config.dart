@@ -9,7 +9,7 @@ abstract class SizeConfig {
   static double kPadding6 = 6;
   static double kPadding20 = 20;
   //! Height
-  static double kHeight812 = 812;
+  static double kHeight690 = 690;
   static double kHeight72 = 72.h;
   static double kHeight39 = 39.h;
   static double kHeight190 = 190.h;
@@ -22,7 +22,7 @@ abstract class SizeConfig {
   static double kHeight103 = 130.h;
   static double kHeight16 = 16.h;
   //! Width
-  static double kWidth375 = 375;
+  static double kWidth360 = 360;
   static double kWidth138 = 138.w;
   static double kWidth32 = 32.w;
   //! BorderRadius

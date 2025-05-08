@@ -26,7 +26,9 @@ class DrosakManagement extends StatelessWidget {
     return BlocProvider(
       create: (context) => AppCubit(),
       child: ScreenUtilInit(
-        designSize: Size(SizeConfig.kWidth375, SizeConfig.kHeight812),
+        designSize: Size(SizeConfig.kWidth360, SizeConfig.kHeight690),
+        minTextAdapt: true,
+        splitScreenMode: true,
         // minTextAdapt: true,
         // splitScreenMode: true,
         child: MaterialApp(

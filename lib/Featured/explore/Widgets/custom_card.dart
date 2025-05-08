@@ -3,6 +3,7 @@ import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomCard extends StatelessWidget {
@@ -15,7 +16,7 @@ class CustomCard extends StatelessWidget {
       // height: SizeConfig.kHeight108,
       decoration: BoxDecoration(
         color: AppColor.secondColorBlock,
-        borderRadius: BorderRadius.circular(SizeConfig.borderRadius18),
+        borderRadius: BorderRadius.circular(SizeConfig.borderRadius18.r),
         boxShadow: [
           BoxShadow(
             color: AppColor.primaryColor,
@@ -30,13 +31,13 @@ class CustomCard extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.topStart,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-              margin: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+              padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 3.h),
+              margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 6.h),
               // width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColor.primaryColor,
                 borderRadius: BorderRadius.circular(
-                  SizeConfig.borderRadius12,
+                  SizeConfig.borderRadius12.r,
                 ),
               ),
               child: FittedBox(
