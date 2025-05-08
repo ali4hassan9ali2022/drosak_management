@@ -8,9 +8,23 @@ AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
     automaticallyImplyLeading: false,
     elevation: 0,
     actions: [
-      IconButton(
-        onPressed: () {},
-        icon: Icon(Icons.add_circle_outline, color: Colors.white, size: 24),
+      Builder(
+        builder: (innerContext) {
+          return IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: innerContext,
+                builder: (context) {
+                  switch (cubit.currentIndex) {
+                    default:
+                      return SizedBox.shrink();
+                  }
+                },
+              );
+            },
+            icon: Icon(Icons.add_circle_outline, color: Colors.white, size: 24),
+          );
+        },
       ),
       IconButton(
         onPressed: () {},

@@ -39,7 +39,7 @@ class MainView extends StatelessWidget {
                 return AnimatedSwitcher(
                   duration: Duration(milliseconds: 500),
                   switchInCurve: Curves.easeInOut,
-                  
+
                   child: cubit.pages[cubit.currentIndex],
                 );
               },
@@ -50,3 +50,5 @@ class MainView extends StatelessWidget {
     );
   }
 }
+
+
