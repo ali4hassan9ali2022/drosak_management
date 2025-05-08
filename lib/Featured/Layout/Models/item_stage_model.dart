@@ -11,6 +11,13 @@ class ItemStageModel {
     required this.desc,
     required this.image,
   });
+  Map<String, Object> toJson() {
+    return {
+       AppHelper.educationalStagesName: name,
+        AppHelper.educationalStagesDes: desc,
+        AppHelper.educationalStagesImage: image,
+    };
+  }
   factory ItemStageModel.fromJson(json) {
     return ItemStageModel(
       id: int.parse(json[AppHelper.educationalStagesId].toString()),

@@ -83,11 +83,7 @@ class EducationalStagesOperation extends SqFliteDatabase {
   Future<bool> insertEducationalStages(ItemStageModel model) {
     return inseretData(
       tableName: AppHelper.educationalStagesTableName,
-      values: {
-        AppHelper.educationalStagesName: model.name,
-        AppHelper.educationalStagesDes: model.desc,
-        AppHelper.educationalStagesImage: model.image,
-      },
+      values: model.toJson(),
     );
   }
 
