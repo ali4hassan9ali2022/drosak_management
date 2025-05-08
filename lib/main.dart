@@ -2,7 +2,8 @@ import 'package:device_preview/device_preview.dart';
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
-import 'package:drosak_management/Cubit/app_cubit.dart';
+import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
+import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,8 +24,11 @@ class DrosakManagement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AppCubit(),),
+        BlocProvider(create: (context) => DatabaseCubit(),)
+      ],
       child: ScreenUtilInit(
         designSize: Size(SizeConfig.kWidth360, SizeConfig.kHeight690),
         minTextAdapt: true,

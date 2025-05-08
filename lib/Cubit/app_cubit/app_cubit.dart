@@ -1,6 +1,6 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/assets.dart';
-import 'package:drosak_management/Cubit/app_state.dart';
+import 'package:drosak_management/Cubit/app_cubit/app_state.dart';
 import 'package:drosak_management/Featured/Layout/Views/attendance_view.dart';
 import 'package:drosak_management/Featured/Layout/Views/educational_stages_view.dart';
 import 'package:drosak_management/Featured/Layout/Views/groub_view.dart';

@@ -15,6 +15,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.textAlign,
+    this.maxLines,
   });
   final String? hintText;
   final Widget? label;
@@ -28,9 +29,11 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final TextAlign? textAlign;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       textAlign: textAlign ?? TextAlign.start,
       onTap: onTap,
       validator: validator,

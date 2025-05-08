@@ -4,7 +4,9 @@ import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Core/Widgets/custom_button.dart';
 import 'package:drosak_management/Core/Widgets/custom_text_form_field.dart';
+import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,6 +15,7 @@ class AddEducationalSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = BlocProvider.of<DatabaseCubit>(context);
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: SizeConfig.kPadding12.w,
@@ -37,6 +40,7 @@ class AddEducationalSheet extends StatelessWidget {
                 SizedBox(width: 6.w),
                 Expanded(
                   child: CustomTextFormField(
+                    controller: cubit.nameEdController,
                     textAlign: TextAlign.end,
                     filled: true,
                     fillColor: Colors.white,
@@ -44,6 +48,15 @@ class AddEducationalSheet extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 12.h),
+            CustomTextFormField(
+              maxLines: 3,
+              controller: cubit.descEdController,
+              hintText: "الوصف",
+              textAlign: TextAlign.end,
+              filled: true,
+              fillColor: Colors.white,
             ),
             SizedBox(height: 40.h),
             CustomButton(

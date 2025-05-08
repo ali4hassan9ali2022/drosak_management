@@ -3,7 +3,7 @@ import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
-import 'package:drosak_management/Cubit/app_cubit.dart';
+import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
 import 'package:drosak_management/Featured/explore/Views/explore_view.dart';
 import 'package:flutter/material.dart';
 

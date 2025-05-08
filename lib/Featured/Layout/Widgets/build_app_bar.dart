@@ -1,6 +1,6 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
-import 'package:drosak_management/Cubit/app_cubit.dart';
+import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/add_educational_sheet.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
-import 'package:drosak_management/Cubit/app_cubit.dart';
-import 'package:drosak_management/Cubit/app_state.dart';
+import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
+import 'package:drosak_management/Cubit/app_cubit/app_state.dart';
 import 'package:drosak_management/Featured/onBoarding/Widgets/custom_dot_indicator.dart';
 import 'package:drosak_management/Featured/onBoarding/Widgets/on_boarding_view_body.dart';
 import 'package:flutter/material.dart';
