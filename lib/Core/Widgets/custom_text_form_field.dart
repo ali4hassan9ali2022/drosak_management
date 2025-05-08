@@ -14,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText,
     this.controller,
     this.keyboardType,
+    this.textAlign,
   });
   final String? hintText;
   final Widget? label;
@@ -26,20 +27,23 @@ class CustomTextFormField extends StatelessWidget {
   final bool? obscureText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlign: textAlign ?? TextAlign.start,
       onTap: onTap,
       validator: validator,
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
         hintText: hintText,
         label: label,
         border: outlineInputBorder(),
         enabledBorder: outlineInputBorder(),
-        focusedBorder: OutlineInputBorder(),
+        focusedBorder: outlineInputBorder(),
         filled: filled,
         fillColor: fillColor,
         prefixIcon: Icon(prefixIcon),
@@ -51,9 +55,7 @@ class CustomTextFormField extends StatelessWidget {
 
 OutlineInputBorder outlineInputBorder({Color? color}) {
   return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(12),
-    borderSide: BorderSide(
-      color: color ?? Colors.grey,
-    )
+    borderRadius: BorderRadius.circular(16),
+    borderSide: BorderSide(color: color ?? Colors.grey),
   );
 }
