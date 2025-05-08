@@ -26,8 +26,10 @@ class DrosakManagement extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AppCubit(),),
-        BlocProvider(create: (context) => DatabaseCubit(),)
+        BlocProvider(create: (context) => AppCubit()),
+        BlocProvider(
+          create: (context) => DatabaseCubit()..getAllEducationalData(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: Size(SizeConfig.kWidth360, SizeConfig.kHeight690),

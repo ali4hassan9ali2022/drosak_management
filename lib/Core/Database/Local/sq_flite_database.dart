@@ -90,4 +90,7 @@ class EducationalStagesOperation extends SqFliteDatabase {
       },
     );
   }
+  Future<List<Map<String, Object?>>> getAllEducationalData(){
+    return getData(tableName: AppHelper.educationalStagesTableName);
+  }
 }

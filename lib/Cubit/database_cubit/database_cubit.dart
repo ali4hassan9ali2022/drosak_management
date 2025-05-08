@@ -23,4 +23,10 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     );
     print(inseret);
   }
+  void getAllEducationalData() async{
+     EducationalStagesOperation educationalStagesOperation =
+        EducationalStagesOperation();
+      List<Map<String, Object?>> getData = await educationalStagesOperation.getAllEducationalData();
+      print(getData);
+  }
 }
