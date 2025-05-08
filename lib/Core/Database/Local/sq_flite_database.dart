@@ -1,60 +1,35 @@
 import 'package:drosak_management/Core/Database/Local/crud.dart';
+import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqFliteDatabase extends Crud {
-  // static const _user = "users";
-  // static const _userId = "user_id";
-  // static const _username = "username";
-  // static const _product = "product";
-  // static const _productId = "product_id";
-  // static const _productName = "product_name";
-  // static const _productPrice = "product_price";
-  // static const _productCount = "product_count";
-  // static const _sales = "sales";
-  // static const _salesId = "sales_id";
-  // static const _salesProductId = "sales_product_id";
-  // static const _salesUserId = "sales_user_id";
   Database? _database;
   Future<Database> _initDatabse() async {
     String databasePath = await getDatabasesPath();
-    String managementDatabaseName = "management.db";
+    String drosakDatabaseName = "drosak.db";
 
-    String dbPath = join(databasePath, managementDatabaseName);
+    String dbPath = join(databasePath, drosakDatabaseName);
     int versionDatabase = 1;
     _database ??= await openDatabase(
       dbPath,
       version: versionDatabase,
       onCreate: _onCreate,
+      onOpen: (db) async{
+        await db.execute("PRAGMA foreign_keys = on");
+      },
     );
     return _database!;
   }
 
   _onCreate(Database db, int version) async {
-    // await db.execute(
-    //   "CREATE TABLE $_user "
-    //   "($_userId INTEGER PRIMARY KEY AUTOINCREMENT,"
-    //   "$_username  TEXT)",
-    // );
-    // await db.execute(
-    //   "CREATE TABLE  $_product "
-    //   "($_productId INTEGER PRIMARY KEY AUTOINCREMENT,"
-    //   "$_productName  TEXT"
-    //   ",$_productPrice  REAL,"
-    //   " $_productCount INTEGER)",
-    // );
-    // await db.execute(
-    //   "CREATE TABLE  $_sales "
-    //   "($_salesId INTEGER PRIMARY KEY AUTOINCREMENT,"
-    //   "$_salesProductId  INTEGER,"
-    //   "$_salesUserId  INTEGER)",
-    // );
-    // await db.execute(
-    //   "CREATE TABLE  $_sales "
-    //   "($_salesId INTEGER PRIMARY KEY,"
-    //   "$__salesProductName  TEXT"
-    //   ",$_salesUsername  TEXT",
-    // );
+    await db.execute(
+      "CREATE TABLE ${AppHelper.educationalStagesTableName} "
+      "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "${AppHelper.educationalStagesName}  TEXT,"
+      "${AppHelper.educationalStagesDes} TEXT, " 
+      "${AppHelper.educationalStagesImage} TEXT)",
+    );
   }
   //! Delete Data
   @override

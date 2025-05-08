@@ -8,6 +8,12 @@ import 'package:drosak_management/Featured/onBoarding/Views/on_boarding_view.dar
 import 'package:flutter/material.dart';
 
 abstract class AppHelper {
+
+  static const String educationalStagesTableName = "educationalStagesTableName";
+  static const String educationalStagesId = "educationalStagesId";
+  static const String educationalStagesName = "educationalStagesName";
+  static const String educationalStagesDes = "educationalStagesDes";
+  static const String educationalStagesImage = "educationalStagesImage";
   static List onBoarding = [
     OnBoardingModel(
       image: Assets.imagesOnBoardingImage1,
