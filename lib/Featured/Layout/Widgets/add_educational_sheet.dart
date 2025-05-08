@@ -59,13 +59,19 @@ class AddEducationalSheet extends StatelessWidget {
               fillColor: Colors.white,
             ),
             SizedBox(height: 40.h),
-            CustomButton(
-              borderRadius: SizeConfig.borderRadius12.r,
-              color: AppColor.primaryColor,
-              width: SizeConfig.kWidth122,
-              height: SizeConfig.kHeight40,
-              child: Center(
-                child: Text("إضافة", style: AppStyles.styleMedium16(context)),
+            GestureDetector(
+              onTap: () {
+                cubit.addNewEducatonal();
+              },
+              child: CustomButton(
+                
+                borderRadius: SizeConfig.borderRadius12.r,
+                color: AppColor.primaryColor,
+                width: SizeConfig.kWidth122,
+                height: SizeConfig.kHeight40,
+                child: Center(
+                  child: Text("إضافة", style: AppStyles.styleMedium16(context)),
+                ),
               ),
             ),
           ],

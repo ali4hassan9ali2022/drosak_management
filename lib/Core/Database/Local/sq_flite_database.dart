@@ -1,5 +1,6 @@
 import 'package:drosak_management/Core/Database/Local/crud.dart';
 import 'package:drosak_management/Core/Helper/app_helper.dart';
+import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,7 +16,7 @@ class SqFliteDatabase extends Crud {
       dbPath,
       version: versionDatabase,
       onCreate: _onCreate,
-      onOpen: (db) async{
+      onOpen: (db) async {
         await db.execute("PRAGMA foreign_keys = on");
       },
     );
@@ -27,10 +28,11 @@ class SqFliteDatabase extends Crud {
       "CREATE TABLE ${AppHelper.educationalStagesTableName} "
       "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
       "${AppHelper.educationalStagesName}  TEXT,"
-      "${AppHelper.educationalStagesDes} TEXT, " 
+      "${AppHelper.educationalStagesDes} TEXT, "
       "${AppHelper.educationalStagesImage} TEXT)",
     );
   }
+
   //! Delete Data
   @override
   Future<bool> deleteData({
@@ -77,11 +79,15 @@ class SqFliteDatabase extends Crud {
   }
 }
 
-
-class EducationalStagesOperation extends SqFliteDatabase{
-Future<bool> insertEducationalStages() {
-  return inseretData(tableName: AppHelper.educationalStagesTableName, values: {
-    
-  });
-}
+class EducationalStagesOperation extends SqFliteDatabase {
+  Future<bool> insertEducationalStages(ItemStageModel model) {
+    return inseretData(
+      tableName: AppHelper.educationalStagesTableName,
+      values: {
+        AppHelper.educationalStagesName: model.name,
+        AppHelper.educationalStagesDes: model.desc,
+        AppHelper.educationalStagesImage: model.image,
+      },
+    );
+  }
 }
