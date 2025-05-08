@@ -1,8 +1,22 @@
+import 'package:drosak_management/Core/Helper/app_helper.dart';
+
 class ItemStageModel {
   final int id;
   final String name;
   final String desc;
   final String image;
-
-  ItemStageModel({required this.id, required this.name, required this.desc, required this.image});
+  ItemStageModel({
+    required this.id,
+    required this.name,
+    required this.desc,
+    required this.image,
+  });
+  factory ItemStageModel.fromJson(json) {
+    return ItemStageModel(
+      id: int.parse(json[AppHelper.educationalStagesId].toString()),
+      name: json[AppHelper.educationalStagesName].toString(),
+      desc: json[AppHelper.educationalStagesDes].toString(),
+      image: json[AppHelper.educationalStagesImage].toString(),
+    );
+  }
 }

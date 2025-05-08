@@ -26,7 +26,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   void getAllEducationalData() async{
      EducationalStagesOperation educationalStagesOperation =
         EducationalStagesOperation();
-      List<Map<String, Object?>> getData = await educationalStagesOperation.getAllEducationalData();
+      List<ItemStageModel> getData = await educationalStagesOperation.getAllEducationalData();
       print(getData);
   }
 }
