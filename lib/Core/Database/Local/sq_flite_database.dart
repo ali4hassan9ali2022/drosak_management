@@ -76,3 +76,12 @@ class SqFliteDatabase extends Crud {
     return update > 0 ? true : false;
   }
 }
+
+
+class EducationalStagesOperation extends SqFliteDatabase{
+Future<bool> insertEducationalStages() {
+  return inseretData(tableName: AppHelper.educationalStagesTableName, values: {
+    
+  });
+}
+}
