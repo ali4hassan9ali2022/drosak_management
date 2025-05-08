@@ -25,6 +25,7 @@ abstract class SizeConfig {
   static double kWidth360 = 360;
   static double kWidth138 = 138.w;
   static double kWidth32 = 32.w;
+  static double kWidth122 = 122.w;
   //! BorderRadius
   static double borderRadius18 = 18;
   static double borderRadius12 = 12;

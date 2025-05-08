@@ -19,7 +19,7 @@ class EducationalStagesView extends StatelessWidget {
             (context, index) => CustomEducationalItem(index: index + 1),
         separatorBuilder:
             (context, index) => SizedBox(height: SizeConfig.kHeight16),
-        itemCount: 10,
+        itemCount: 2,
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
+import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Core/Widgets/custom_button.dart';
 import 'package:drosak_management/Core/Widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,26 +25,38 @@ class AddEducationalSheet extends StatelessWidget {
           topRight: Radius.circular(SizeConfig.borderRadius12.r),
         ),
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              IconButton.filled(
-                onPressed: () {},
-                icon: SvgPicture.asset(Assets.imagesPlaceholderSvg),
-              ),
-              SizedBox(width: 6.w),
-              Expanded(
-                child: CustomTextFormField(
-                  textAlign: TextAlign.end,
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: "إسم المرحلة التعليمية",
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                IconButton.filled(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(Assets.imagesPlaceholderSvg),
                 ),
+                SizedBox(width: 6.w),
+                Expanded(
+                  child: CustomTextFormField(
+                    textAlign: TextAlign.end,
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: "إسم المرحلة التعليمية",
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 40.h),
+            CustomButton(
+              borderRadius: SizeConfig.borderRadius12.r,
+              color: AppColor.primaryColor,
+              width: SizeConfig.kWidth122,
+              height: SizeConfig.kHeight40,
+              child: Center(
+                child: Text("إضافة", style: AppStyles.styleMedium16(context)),
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

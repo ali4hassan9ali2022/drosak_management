@@ -14,11 +14,17 @@ AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
           return IconButton(
             onPressed: () {
               showModalBottomSheet(
+                isScrollControlled: true,
                 context: innerContext,
                 builder: (context) {
                   switch (cubit.currentIndex) {
                     case 0:
-                      return AddEducationalSheet();
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom * 1,
+                        ),
+                        child: AddEducationalSheet(),
+                      );
                     default:
                       return SizedBox.shrink();
                   }
