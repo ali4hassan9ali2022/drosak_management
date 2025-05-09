@@ -67,6 +67,7 @@ abstract class AppHelper {
     );
     if (image != null) {
       BlocProvider.of<DatabaseCubit>(context).uploadProfilePic(image);
+      
     } else {
       ScaffoldMessenger.of(
         context,

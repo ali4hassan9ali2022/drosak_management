@@ -11,25 +11,41 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   TextEditingController descEdController = TextEditingController();
   XFile? profilePic;
   void addNewEducatonal() async {
-    EducationalStagesOperation educationalStagesOperation =
+    emit(LoadingAddEducational());
+    try{
+      EducationalStagesOperation educationalStagesOperation =
         EducationalStagesOperation();
     bool inseret = await educationalStagesOperation.insertEducationalStages(
       ItemStageModel(
         id: 1,
         name: nameEdController.text,
         desc: descEdController.text,
-        image: profilePic!.path,
+        image: profilePic?.path ?? "",
       ),
     );
     print(inseret);
+    nameEdController.clear();
+    descEdController.clear();
+    profilePic = null;
+    emit(SuccsesAddEducational());
+    getAllEducationalData();
+    } catch(e) {
+      emit(FailureAddEducational(errMessage: "Error"));
+    }
   }
 
+  List<ItemStageModel> getData = [];
   void getAllEducationalData() async {
-    EducationalStagesOperation educationalStagesOperation =
+    emit(LoadingGetDataEducational());
+    try{
+      EducationalStagesOperation educationalStagesOperation =
         EducationalStagesOperation();
-    List<ItemStageModel> getData =
-        await educationalStagesOperation.getAllEducationalData();
+    getData = await educationalStagesOperation.getAllEducationalData();
     print("Data is $getData");
+    emit(SuccsesGetDataEducational(itemStageModel: getData));
+    }catch(e) {
+      emit(FailureGetDateEducational(errMessage: "Error"));
+    }
   }
 
   uploadProfilePic(XFile image) {

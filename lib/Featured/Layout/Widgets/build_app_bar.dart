@@ -25,7 +25,10 @@ AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
                         padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom * 1,
                         ),
-                        child: BlocProvider.value(value: BlocProvider.of<DatabaseCubit>(context), child: AddEducationalSheet(),),
+                        child: BlocProvider.value(
+                          value: BlocProvider.of<DatabaseCubit>(context),
+                          child: AddEducationalSheet(),
+                        ),
                       );
                     default:
                       return SizedBox.shrink();

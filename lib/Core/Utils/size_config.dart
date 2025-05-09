@@ -29,4 +29,5 @@ abstract class SizeConfig {
   //! BorderRadius
   static double borderRadius18 = 18;
   static double borderRadius12 = 12;
+  static double borderRadius32 = 32;
 }

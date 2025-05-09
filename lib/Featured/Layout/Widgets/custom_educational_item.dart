@@ -1,12 +1,14 @@
 import 'package:drosak_management/Core/Widgets/custom_box_shadow.dart';
 import 'package:drosak_management/Core/Widgets/custom_number_item.dart';
+import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/custom_card_educational.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomEducationalItem extends StatelessWidget {
-  const CustomEducationalItem({super.key, required this.index});
+  const CustomEducationalItem({super.key, required this.index, required this.items});
   final int index;
+  final ItemStageModel items;
   @override
   Widget build(BuildContext context) {
     // var size = MediaQuery.sizeOf(context);
@@ -19,7 +21,9 @@ class CustomEducationalItem extends StatelessWidget {
           child: CustomNumberItem(index: index),
         ),
         Positioned(top: -10.h, right: -5.w, child: CustomBoxShadow()),
-        CustomCardEducational(),
+        CustomCardEducational(
+          items: items,
+        ),
       ],
     );
   }
