@@ -1,3 +1,4 @@
+import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/assets.dart';
@@ -34,7 +35,9 @@ class AddEducationalSheet extends StatelessWidget {
             Row(
               children: [
                 IconButton.filled(
-                  onPressed: () {},
+                  onPressed: () {
+                    AppHelper.pickImaegFromGallery(context);
+                  },
                   icon: SvgPicture.asset(Assets.imagesPlaceholderSvg),
                 ),
                 SizedBox(width: 6.w),
@@ -64,7 +67,6 @@ class AddEducationalSheet extends StatelessWidget {
                 cubit.addNewEducatonal();
               },
               child: CustomButton(
-                
                 borderRadius: SizeConfig.borderRadius12.r,
                 color: AppColor.primaryColor,
                 width: SizeConfig.kWidth122,

@@ -1,5 +1,4 @@
 import 'package:drosak_management/Core/Database/Local/sq_flite_database.dart';
-import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:flutter/widgets.dart';
@@ -19,7 +18,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
         id: 1,
         name: nameEdController.text,
         desc: descEdController.text,
-        image: Assets.imagesPlaceholderSvg,
+        image: profilePic!.path,
       ),
     );
     print(inseret);
@@ -30,7 +29,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
         EducationalStagesOperation();
     List<ItemStageModel> getData =
         await educationalStagesOperation.getAllEducationalData();
-    print(getData);
+    print("Data is $getData");
   }
 
   uploadProfilePic(XFile image) {

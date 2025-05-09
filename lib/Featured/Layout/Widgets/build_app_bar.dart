@@ -1,8 +1,10 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
+import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/add_educational_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
   return AppBar(
@@ -23,7 +25,7 @@ AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
                         padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom * 1,
                         ),
-                        child: AddEducationalSheet(),
+                        child: BlocProvider.value(value: BlocProvider.of<DatabaseCubit>(context), child: AddEducationalSheet(),),
                       );
                     default:
                       return SizedBox.shrink();

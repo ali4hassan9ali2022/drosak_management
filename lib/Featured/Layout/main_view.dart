@@ -1,5 +1,6 @@
 import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
 import 'package:drosak_management/Cubit/app_cubit/app_state.dart';
+import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/build_app_bar.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,36 +12,46 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int index = ModalRoute.of(context)!.settings.arguments as int;
-    var cubit = BlocProvider.of<AppCubit>(context);
+    var appCubit = BlocProvider.of<AppCubit>(context);
+    var databaseCubit = BlocProvider.of<DatabaseCubit>(context);
     print(index);
-    cubit.changeBottomNavBar(index);
-    cubit.currentIndex == index;
+    appCubit.changeBottomNavBar(index);
+    if(index == 0) {
+      databaseCubit.getAllEducationalData();
+    }
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Directionality(
           textDirection: TextDirection.rtl,
           child: Scaffold(
-            appBar: buildAppBar(context: context, cubit: cubit),
+            appBar: buildAppBar(context: context, cubit: appCubit),
             bottomNavigationBar: CustomBottomNavigationBar(
               onTap: (value) {
-                cubit.changeBottomNavBar(value);
+                
+                appCubit.changeBottomNavBar(value);
+                if(index == 0) {
+      databaseCubit.getAllEducationalData();
+    }
               },
-              currentIndex: cubit.currentIndex,
-              items: cubit.icons,
+              currentIndex: appCubit.currentIndex,
+              items: appCubit.icons,
             ),
             body: PageView.builder(
-              itemCount: cubit.pages.length,
-              controller: cubit.pageMainController,
+              itemCount: appCubit.pages.length,
+              controller: appCubit.pageMainController,
               onPageChanged: (value) {
-                cubit.changePageMainView(value);
+                appCubit.changePageMainView(value);
+                if(value == 0) {
+      databaseCubit.getAllEducationalData();
+    }
               },
               itemBuilder: (context, index) {
                 return AnimatedSwitcher(
                   duration: Duration(milliseconds: 500),
                   switchInCurve: Curves.easeInOut,
-
-                  child: cubit.pages[cubit.currentIndex],
+          
+                  child: appCubit.pages[appCubit.currentIndex],
                 );
               },
             ),
@@ -50,5 +61,3 @@ class MainView extends StatelessWidget {
     );
   }
 }
-
-
