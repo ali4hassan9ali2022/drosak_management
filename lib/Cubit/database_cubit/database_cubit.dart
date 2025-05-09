@@ -10,6 +10,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   TextEditingController nameEdController = TextEditingController();
   TextEditingController descEdController = TextEditingController();
   XFile? profilePic;
+  GlobalKey<FormState> keyState = GlobalKey();
   void addNewEducatonal() async {
     emit(LoadingAddEducational());
     try{
