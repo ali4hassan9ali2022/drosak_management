@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Featured/Layout/main_view.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
@@ -7,6 +9,7 @@ import 'package:drosak_management/Featured/onBoarding/Models/on_boarding_model.d
 import 'package:drosak_management/Featured/onBoarding/Views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 abstract class AppHelper {
   //! educational table
@@ -65,11 +68,22 @@ abstract class AppHelper {
     );
     return image;
   }
+
   static Future<XFile?> pickImaegFromCamera(BuildContext context) async {
     final XFile? image = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );
     return image;
+  }
+
+  //! Sava Image
+  static Future<String?> saveImageOfMyApp(XFile? image) async {
+    
+    Directory directory = await getApplicationDocumentsDirectory();
+    var directoryPath = directory.path;
+    var finalPath = "$directoryPath/${image!.name}";
+    File file = await File(image.path).copy(finalPath);
+    return file.path;
   }
 
   static void navgatorPushNamed(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
@@ -37,7 +39,12 @@ class ShowAlertDialog extends StatelessWidget {
               final image = await AppHelper.pickImaegFromGallery(context);
               Navigator.pop(context);
               if (image != null) {
-                BlocProvider.of<DatabaseCubit>(context).uploadProfilePic(image);
+                final savePath = await AppHelper.saveImageOfMyApp(image);
+                if (savePath != null) {
+                  BlocProvider.of<DatabaseCubit>(
+                    context,
+                  ).uploadProfilePic(File(savePath));
+                }
               } else {
                 ScaffoldMessenger.of(
                   context,
@@ -52,7 +59,12 @@ class ShowAlertDialog extends StatelessWidget {
               final image = await AppHelper.pickImaegFromCamera(context);
               Navigator.pop(context);
               if (image != null) {
-                BlocProvider.of<DatabaseCubit>(context).uploadProfilePic(image);
+                final savePath = await AppHelper.saveImageOfMyApp(image);
+                if (savePath != null) {
+                  BlocProvider.of<DatabaseCubit>(
+                    context,
+                  ).uploadProfilePic(File(savePath));
+                }
               } else {
                 ScaffoldMessenger.of(
                   context,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:drosak_management/Core/Database/Local/sq_flite_database.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
@@ -49,8 +51,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     }
   }
 
-  uploadProfilePic(XFile image) {
-    profilePic = image;
+  uploadProfilePic(File image) {
+    profilePic = XFile(image.path);
     emit(UploadProfilePic());
   }
   removeProfilePic() {
