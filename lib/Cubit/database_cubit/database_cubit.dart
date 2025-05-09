@@ -4,12 +4,13 @@ import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DatabaseCubit extends Cubit<DatabaseState> {
   DatabaseCubit() : super(InitialDataBaseState());
   TextEditingController nameEdController = TextEditingController();
   TextEditingController descEdController = TextEditingController();
-
+  XFile? profilePic;
   void addNewEducatonal() async {
     EducationalStagesOperation educationalStagesOperation =
         EducationalStagesOperation();
@@ -23,10 +24,17 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     );
     print(inseret);
   }
-  void getAllEducationalData() async{
-     EducationalStagesOperation educationalStagesOperation =
+
+  void getAllEducationalData() async {
+    EducationalStagesOperation educationalStagesOperation =
         EducationalStagesOperation();
-      List<ItemStageModel> getData = await educationalStagesOperation.getAllEducationalData();
-      print(getData);
+    List<ItemStageModel> getData =
+        await educationalStagesOperation.getAllEducationalData();
+    print(getData);
+  }
+
+  uploadProfilePic(XFile image) {
+    profilePic = image;
+    emit(UploadProfilePic());
   }
 }
