@@ -8,10 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardEducationalData extends StatelessWidget {
-  const CardEducationalData({
-    super.key,
-    required this.items,
-  });
+  const CardEducationalData({super.key, required this.items});
 
   final ItemStageModel items;
 
@@ -43,6 +40,20 @@ class CardEducationalData extends StatelessWidget {
                     style: AppStyles.styleMedium10(context),
                   ),
                 ),
+                if (items.createI != null)
+                  Text(
+                    "${items.createI!.hour}:0${items.createI!.minute}",
+                    style: AppStyles.styleMedium14(
+                      context,
+                    ).copyWith(color: Colors.white),
+                  ),
+                if (items.createI != null)
+                  Text(
+                    "${items.createI!.year}-${items.createI!.month}-${items.createI!.day}",
+                    style: AppStyles.styleMedium14(
+                      context,
+                    ).copyWith(color: Colors.white),
+                  ),
               ],
             ),
           ),

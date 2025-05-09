@@ -11,11 +11,22 @@ class SqFliteDatabase extends Crud {
     String drosakDatabaseName = "drosak.db";
 
     String dbPath = join(databasePath, drosakDatabaseName);
-    int versionDatabase = 1;
+    int versionDatabase = 2;
     _database ??= await openDatabase(
       dbPath,
       version: versionDatabase,
       onCreate: _onCreate,
+      onUpgrade: (db, oldVersion, newVersion) async{
+        await db.execute("DROP TABLE IF EXISTS ${AppHelper.educationalStagesTableName}");
+        await db.execute(
+      "CREATE TABLE ${AppHelper.educationalStagesTableName} "
+      "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "${AppHelper.educationalStagesName}  TEXT,"
+      "${AppHelper.educationalStagesDes} TEXT, "
+      "${AppHelper.educationalStagesCreateAt} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+      "${AppHelper.educationalStagesImage} TEXT)",
+    );
+      },
       onOpen: (db) async {
         await db.execute("PRAGMA foreign_keys = on");
       },
@@ -29,6 +40,7 @@ class SqFliteDatabase extends Crud {
       "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
       "${AppHelper.educationalStagesName}  TEXT,"
       "${AppHelper.educationalStagesDes} TEXT, "
+      "${AppHelper.educationalStagesCreateAt} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
       "${AppHelper.educationalStagesImage} TEXT)",
     );
   }

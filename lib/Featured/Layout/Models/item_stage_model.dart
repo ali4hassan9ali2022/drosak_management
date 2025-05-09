@@ -5,7 +5,9 @@ class ItemStageModel {
   final String name;
   final String desc;
   final String image;
-  ItemStageModel({
+ DateTime? createI;
+  ItemStageModel( {
+    this.createI,
     required this.id,
     required this.name,
     required this.desc,
@@ -21,6 +23,7 @@ class ItemStageModel {
 
   factory ItemStageModel.fromJson(json) {
     return ItemStageModel(
+      createI:DateTime.parse( json[AppHelper.educationalStagesCreateAt].toString()),
       id: int.parse(json[AppHelper.educationalStagesId].toString()),
       name: json[AppHelper.educationalStagesName].toString(),
       desc: json[AppHelper.educationalStagesDes].toString(),

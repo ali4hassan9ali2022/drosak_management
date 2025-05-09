@@ -18,6 +18,7 @@ abstract class AppHelper {
   static const String educationalStagesName = "educationalStagesName";
   static const String educationalStagesDes = "educationalStagesDes";
   static const String educationalStagesImage = "educationalStagesImage";
+  static const String educationalStagesCreateAt = "educationalStagesCreateAt";
   //! onBoarding Model
   static List onBoarding = [
     OnBoardingModel(
