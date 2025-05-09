@@ -1,5 +1,4 @@
 import 'package:drosak_management/Core/Utils/assets.dart';
-import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Featured/Layout/main_view.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
 import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
@@ -7,7 +6,6 @@ import 'package:drosak_management/Featured/explore/Views/explore_view.dart';
 import 'package:drosak_management/Featured/onBoarding/Models/on_boarding_model.dart';
 import 'package:drosak_management/Featured/onBoarding/Views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 abstract class AppHelper {
@@ -61,18 +59,11 @@ abstract class AppHelper {
   };
 
   //! Pick Image
-  static void pickImaegFromGallery(BuildContext context) async {
+  static Future<XFile?> pickImaegFromGallery(BuildContext context) async {
     final XFile? image = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
-    if (image != null) {
-      BlocProvider.of<DatabaseCubit>(context).uploadProfilePic(image);
-      
-    } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("لم يتم اختيار صورة")));
-    }
+    return image;
   }
 
   static void navgatorPushNamed(

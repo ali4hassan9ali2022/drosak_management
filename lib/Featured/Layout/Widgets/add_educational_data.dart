@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/assets.dart';
@@ -8,6 +7,7 @@ import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Core/Widgets/custom_button.dart';
 import 'package:drosak_management/Core/Widgets/custom_text_form_field.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/show_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,7 +27,13 @@ class AddEducationalData extends StatelessWidget {
             children: [
               IconButton.filled(
                 onPressed: () {
-                  AppHelper.pickImaegFromGallery(context);
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return ShowAlertDialog();
+                    },
+                  );
                 },
                 icon: SvgPicture.asset(Assets.imagesPlaceholderSvg),
               ),
