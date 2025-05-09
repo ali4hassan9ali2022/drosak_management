@@ -16,8 +16,8 @@ class ShowAlertDialog extends StatelessWidget {
         children: [
           IconButton.filled(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            onPressed: () {
-              // Navigator.pop(context);
+            onPressed: () async {
+              Navigator.pop(context);
             },
             icon: Icon(Icons.close, color: Colors.white),
           ),
@@ -48,7 +48,17 @@ class ShowAlertDialog extends StatelessWidget {
           ),
           SizedBox(width: 20.w),
           IconButton.filled(
-            onPressed: () {},
+            onPressed: () async {
+              final image = await AppHelper.pickImaegFromCamera(context);
+              Navigator.pop(context);
+              if (image != null) {
+                BlocProvider.of<DatabaseCubit>(context).uploadProfilePic(image);
+              } else {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text("لم يتم اختيار صورة")));
+              }
+            },
             icon: Icon(Icons.camera, color: Colors.white),
           ),
         ],

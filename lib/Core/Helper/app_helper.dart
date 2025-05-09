@@ -65,6 +65,12 @@ abstract class AppHelper {
     );
     return image;
   }
+  static Future<XFile?> pickImaegFromCamera(BuildContext context) async {
+    final XFile? image = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+    );
+    return image;
+  }
 
   static void navgatorPushNamed(
     BuildContext context, {
