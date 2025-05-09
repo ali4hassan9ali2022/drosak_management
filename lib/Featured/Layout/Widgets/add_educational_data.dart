@@ -69,15 +69,25 @@ class AddEducationalData extends StatelessWidget {
           SizedBox(height: 12.h),
           cubit.profilePic == null
               ? Text("Not Selected", style: AppStyles.styleMedium20(context))
-              : ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  SizeConfig.borderRadius12.r,
-                ),
-                child: Image.file(
-                  fit: BoxFit.cover,
-                  File(cubit.profilePic!.path),
-                  width: 220.w,
-                ),
+              : Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                      SizeConfig.borderRadius12.r,
+                    ),
+                    child: Image.file(
+                      fit: BoxFit.cover,
+                      File(cubit.profilePic!.path),
+                      width: 220.w,
+                    ),
+                  ),
+                  IconButton.filled(
+                    onPressed: () {
+                      cubit.removeProfilePic();
+                    },
+                    icon: Icon(Icons.delete, color: Colors.white),
+                  ),
+                ],
               ),
           SizedBox(height: 40.h),
           GestureDetector(

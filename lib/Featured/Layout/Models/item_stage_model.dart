@@ -13,11 +13,12 @@ class ItemStageModel {
   });
   Map<String, Object> toJson() {
     return {
-       AppHelper.educationalStagesName: name,
-        AppHelper.educationalStagesDes: desc,
-        AppHelper.educationalStagesImage: image,
+      AppHelper.educationalStagesName: name,
+      AppHelper.educationalStagesDes: desc,
+      AppHelper.educationalStagesImage: image,
     };
   }
+
   factory ItemStageModel.fromJson(json) {
     return ItemStageModel(
       id: int.parse(json[AppHelper.educationalStagesId].toString()),

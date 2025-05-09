@@ -53,4 +53,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     profilePic = image;
     emit(UploadProfilePic());
   }
+  removeProfilePic() {
+    profilePic = null;
+    emit(RemoveProfilePic());
+  }
 }

@@ -5,6 +5,7 @@ abstract class DatabaseState {}
 class InitialDataBaseState extends DatabaseState {}
 
 class UploadProfilePic extends DatabaseState {}
+class RemoveProfilePic extends DatabaseState {}
 class LoadingAddEducational extends DatabaseState {}
 class SuccsesAddEducational extends DatabaseState {}
 class FailureAddEducational extends DatabaseState {

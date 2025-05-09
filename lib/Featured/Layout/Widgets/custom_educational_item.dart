@@ -21,9 +21,7 @@ class CustomEducationalItem extends StatelessWidget {
           child: CustomNumberItem(index: index),
         ),
         Positioned(top: -10.h, right: -5.w, child: CustomBoxShadow()),
-        CustomCardEducational(
-          items: items,
-        ),
+        CustomCardEducational(items: items,),
       ],
     );
   }
