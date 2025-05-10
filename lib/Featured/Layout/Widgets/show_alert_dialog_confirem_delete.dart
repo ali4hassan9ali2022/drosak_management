@@ -24,7 +24,7 @@ class ShowAlertDialogConfirmDelete extends StatelessWidget {
           onPressed: () {
             BlocProvider.of<DatabaseCubit>(
               context,
-            ).deleteDstaEducationalStages(id: items.id);
+            ).deleteDstaEducationalStages(id: items.id!);
             Navigator.of(context).pop(true);
           },
           child: Text('نعم', style: AppStyles.styleMedium20(context)),

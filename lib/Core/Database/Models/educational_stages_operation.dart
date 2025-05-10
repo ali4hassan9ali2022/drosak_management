@@ -45,14 +45,13 @@ class EducationalStagesOperation extends SqFliteDatabase {
   }
 
   Future<bool> updataEducationalStagesData({
-    required int id,
     required ItemStageModel model,
   }) async {
     return await ubdateData(
       tableName: AppHelper.educationalStagesTableName,
       values: model.toJson(),
       where: "${AppHelper.educationalStagesId} = ?",
-      whereArgs: ["$id"],
+      whereArgs: [model.id],
     );
   }
 }

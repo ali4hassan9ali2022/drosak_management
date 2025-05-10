@@ -44,3 +44,9 @@ class FailureDeleteDataEducationalStaeg extends DatabaseState{
 
   FailureDeleteDataEducationalStaeg({required this.errMessage});
 }
+class SuccessUpdataDataEducationalStaeg extends DatabaseState{}
+class FailureUpdateDataEducationalStaeg extends DatabaseState{
+  final String errMessage;
+
+  FailureUpdateDataEducationalStaeg({required this.errMessage});
+}

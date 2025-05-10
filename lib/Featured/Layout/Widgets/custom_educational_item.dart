@@ -44,7 +44,10 @@ class CustomEducationalItem extends StatelessWidget {
             isScrollControlled: true,
             context: context,
             builder: (context) {
-              return ShowBottomSheetEditEducationalStages(cubit: cubit);
+              return ShowBottomSheetEditEducationalStages(
+                cubit: cubit,
+                itemStageModel: items,
+              );
             },
           );
           return false;

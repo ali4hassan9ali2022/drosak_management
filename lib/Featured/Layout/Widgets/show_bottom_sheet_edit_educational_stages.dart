@@ -1,6 +1,7 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
+import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/add_educational_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,11 +9,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ShowBottomSheetEditEducationalStages extends StatelessWidget {
   const ShowBottomSheetEditEducationalStages({
     super.key,
-    required this.cubit,
+    required this.cubit, required this.itemStageModel,
   });
 
   final DatabaseCubit cubit;
-
+final ItemStageModel itemStageModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,7 +33,7 @@ class ShowBottomSheetEditEducationalStages extends StatelessWidget {
           ),
         ),
         child: SingleChildScrollView(
-          child: AddEducationalData(cubit: cubit, updata: true),
+          child: AddEducationalData(cubit: cubit, updata: true, itemStageModel: itemStageModel,),
         ),
       ),
     );

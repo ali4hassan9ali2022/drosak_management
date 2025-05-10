@@ -12,17 +12,15 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   TextEditingController nameEdController = TextEditingController();
   TextEditingController descEdController = TextEditingController();
   XFile? profilePic;
-  late ItemStageModel itemStageModel;
-  late EducationalStagesOperation educationalStagesOperation;
+  ItemStageModel? itemStageModel;
+  EducationalStagesOperation educationalStagesOperation =
+      EducationalStagesOperation();
   GlobalKey<FormState> keyState = GlobalKey();
   void addNewEducatonal() async {
     emit(LoadingAddEducational());
     try {
-      EducationalStagesOperation educationalStagesOperation =
-          EducationalStagesOperation();
       bool inseret = await educationalStagesOperation.insertEducationalStages(
         ItemStageModel(
-          id: 1,
           name: nameEdController.text,
           desc: descEdController.text,
           image: profilePic?.path ?? "",
@@ -43,7 +41,6 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   void getAllEducationalData() async {
     emit(LoadingGetDataEducational());
     try {
-      educationalStagesOperation = EducationalStagesOperation();
       getData = await educationalStagesOperation.getAllEducationalData();
       print("Data is $getData");
       print("Data is ${getData.length}");
@@ -57,7 +54,6 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   void searchAllEducationalData({required String searchWord}) async {
     emit(LoadingSearchDataEducational());
     try {
-      educationalStagesOperation = EducationalStagesOperation();
       searchData = await educationalStagesOperation.getSearchEducationalData(
         searchWord: searchWord,
       );
@@ -70,16 +66,27 @@ class DatabaseCubit extends Cubit<DatabaseState> {
 
   void deleteDstaEducationalStages({required int id}) async {
     try {
-      educationalStagesOperation = EducationalStagesOperation();
       bool delete = await educationalStagesOperation.deleteEducatinalStageData(
         id: id,
       );
       print("Delete: $delete");
       emit(SuccessDeleteDataEducationalStaeg());
-      getData.removeWhere((element) => element.id == itemStageModel.id);
+      // getData.removeWhere((element) => element.id == id);
       getAllEducationalData();
     } catch (e) {
       emit(FailureDeleteDataEducationalStaeg(errMessage: "Error"));
+    }
+  }
+
+  void updataNewEducatonal({required ItemStageModel items}) async {
+    try {
+      bool update = await educationalStagesOperation
+          .updataEducationalStagesData(model: items);
+      print("Update $update");
+      emit(SuccessUpdataDataEducationalStaeg());
+      getAllEducationalData();
+    } catch (e) {
+      emit(FailureUpdateDataEducationalStaeg(errMessage: "Error"));
     }
   }
 

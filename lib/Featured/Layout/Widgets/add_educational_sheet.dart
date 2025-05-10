@@ -2,14 +2,15 @@ import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
+import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/add_educational_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddEducationalSheet extends StatelessWidget {
-  const AddEducationalSheet({super.key});
-
+  const AddEducationalSheet({super.key, required this.items});
+  final ItemStageModel items;
   @override
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<DatabaseCubit>(context);
@@ -27,7 +28,7 @@ class AddEducationalSheet extends StatelessWidget {
               topRight: Radius.circular(SizeConfig.borderRadius12.r),
             ),
           ),
-          child: SingleChildScrollView(child: AddEducationalData(cubit: cubit)),
+          child: SingleChildScrollView(child: AddEducationalData(cubit: cubit, itemStageModel: items,)),
         );
       },
     );
