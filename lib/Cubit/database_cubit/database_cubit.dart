@@ -57,7 +57,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     try {
       EducationalStagesOperation educationalStagesOperation =
           EducationalStagesOperation();
-      getData = await educationalStagesOperation.getSearchEducationalData(
+      searchData = await educationalStagesOperation.getSearchEducationalData(
         searchWord: searchWord,
       );
       print("Data is $searchData");

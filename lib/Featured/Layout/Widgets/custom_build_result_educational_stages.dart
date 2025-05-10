@@ -1,3 +1,4 @@
+import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
@@ -6,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class EducationalStagesView extends StatelessWidget {
-  const EducationalStagesView({super.key});
+class CustomBuildResultEducationalStages extends StatelessWidget {
+  const CustomBuildResultEducationalStages({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DatabaseCubit, DatabaseState>(
       builder: (context, state) {
-        if (state is SuccsesGetDataEducational) {
+        if (state is SuccsesSearchDataEducational) {
           return Padding(
             padding: EdgeInsets.symmetric(
               horizontal: SizeConfig.kPadding18.w,
@@ -31,10 +32,17 @@ class EducationalStagesView extends StatelessWidget {
               itemCount: state.itemStageModel.length,
             ),
           );
-        } else if (state is LoadingGetDataEducational) {
+        } else if (state is FailureSearchDateEducational) {
+          return Center(child: Text("Not Found"));
+        } else if (state is LoadingSearchDataEducational) {
           return Center(child: CircularProgressIndicator());
         } else {
-          return Text("Not Found");
+          return Center(
+            child: Text(
+              "ابدأ بالبحث عن البيانات",
+              style: AppStyles.styleMedium20(context),
+            ),
+          );
         }
       },
     );
