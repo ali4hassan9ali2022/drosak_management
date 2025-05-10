@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
+  var db = BlocProvider.of<DatabaseCubit>(context);
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0,
@@ -16,6 +17,9 @@ AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
         builder: (innerContext) {
           return IconButton(
             onPressed: () {
+              db.nameEdController.clear();
+              db.descEdController.clear();
+              db.profilePic = null;
               showModalBottomSheet(
                 isScrollControlled: true,
                 context: innerContext,

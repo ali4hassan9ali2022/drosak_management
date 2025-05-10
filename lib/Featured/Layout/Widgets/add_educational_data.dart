@@ -13,9 +13,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AddEducationalData extends StatelessWidget {
-  const AddEducationalData({super.key, required this.cubit});
+  const AddEducationalData({
+    super.key,
+    required this.cubit,
+    this.updata = false,
+  });
 
   final DatabaseCubit cubit;
+  final bool updata;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +89,7 @@ class AddEducationalData extends StatelessWidget {
                     child: Image.file(
                       fit: BoxFit.cover,
                       File(cubit.profilePic!.path),
-                      width: 220.w,
+                      width: 120.w,
                     ),
                   ),
                   IconButton.filled(
@@ -114,7 +119,10 @@ class AddEducationalData extends StatelessWidget {
               width: SizeConfig.kWidth122,
               height: SizeConfig.kHeight40,
               child: Center(
-                child: Text("إضافة", style: AppStyles.styleMedium16(context)),
+                child: Text(
+                  updata ? "تحديث" : "إضافة",
+                  style: AppStyles.styleMedium16(context),
+                ),
               ),
             ),
           ),
