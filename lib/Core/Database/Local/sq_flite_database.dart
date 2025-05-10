@@ -96,11 +96,13 @@ class SqFliteDatabase extends Crud {
   Future<List<Map<String, Object?>>> searchData({
     required String tableName,
     required String where,
+    required List<Object?>? whereArgs,
   }) async {
     await _initDatabse();
     List<Map<String, Object?>> data = await _database!.query(
       tableName,
       where: where,
+      whereArgs: whereArgs,
     );
     return data;
   }

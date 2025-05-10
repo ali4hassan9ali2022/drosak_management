@@ -26,3 +26,15 @@ class FailureGetDateEducational extends DatabaseState {
   FailureGetDateEducational({required this.errMessage});
 
 }
+class LoadingSearchDataEducational extends DatabaseState {}
+class SuccsesSearchDataEducational extends DatabaseState {
+  final List<ItemStageModel> itemStageModel;
+
+  SuccsesSearchDataEducational({required this.itemStageModel});
+}
+class FailureSearchDateEducational extends DatabaseState {
+  final String errMessage;
+
+  FailureSearchDateEducational({required this.errMessage});
+
+}

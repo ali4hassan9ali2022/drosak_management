@@ -10,5 +10,9 @@ abstract class Crud {
   });
   Future<bool> deleteData({required String tableName, required String? where});
   Future<List<Map<String, Object?>>> getData({required String tableName});
-  Future<List<Map<String, Object?>>> searchData({required String tableName, required String where});
+  Future<List<Map<String, Object?>>> searchData({
+    required String tableName,
+    required String where,
+    required List<Object?>? whereArgs,
+  });
 }

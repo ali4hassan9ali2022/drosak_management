@@ -20,4 +20,19 @@ class EducationalStagesOperation extends SqFliteDatabase {
     }
     return items;
   }
+
+  Future<List<ItemStageModel>> getSearchEducationalData({
+    required String searchWord,
+  }) async {
+    List<ItemStageModel> items = [];
+    List<Map<String, Object?>> data = await searchData(
+      tableName: AppHelper.educationalStagesTableName,
+      where: "${AppHelper.educationalStagesName} LIKE ? ",
+      whereArgs: ["%$searchWord%"],
+    );
+    for (var item in data) {
+      items.add(ItemStageModel.fromJson(item));
+    }
+    return items;
+  }
 }
