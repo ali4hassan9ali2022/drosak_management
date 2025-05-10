@@ -21,6 +21,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     try {
       bool inseret = await educationalStagesOperation.insertEducationalStages(
         ItemStageModel(
+          id: 0,
           name: nameEdController.text,
           desc: descEdController.text,
           image: profilePic?.path ?? "",

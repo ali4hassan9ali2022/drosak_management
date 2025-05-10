@@ -1,14 +1,14 @@
 import 'package:drosak_management/Core/Helper/app_helper.dart';
 
 class ItemStageModel {
-  final int? id;
+  final int id;
   final String name;
   final String desc;
   final String image;
  DateTime? createI;
   ItemStageModel( {
     this.createI,
-    this.id,
+    required this.id,
     required this.name,
     required this.desc,
     required this.image,
