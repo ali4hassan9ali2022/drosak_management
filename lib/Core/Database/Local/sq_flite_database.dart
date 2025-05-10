@@ -1,6 +1,5 @@
 import 'package:drosak_management/Core/Database/Local/crud.dart';
 import 'package:drosak_management/Core/Helper/app_helper.dart';
-import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -16,16 +15,18 @@ class SqFliteDatabase extends Crud {
       dbPath,
       version: versionDatabase,
       onCreate: _onCreate,
-      onUpgrade: (db, oldVersion, newVersion) async{
-        await db.execute("DROP TABLE IF EXISTS ${AppHelper.educationalStagesTableName}");
+      onUpgrade: (db, oldVersion, newVersion) async {
         await db.execute(
-      "CREATE TABLE ${AppHelper.educationalStagesTableName} "
-      "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
-      "${AppHelper.educationalStagesName}  TEXT,"
-      "${AppHelper.educationalStagesDes} TEXT, "
-      "${AppHelper.educationalStagesCreateAt} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
-      "${AppHelper.educationalStagesImage} TEXT)",
-    );
+          "DROP TABLE IF EXISTS ${AppHelper.educationalStagesTableName}",
+        );
+        await db.execute(
+          "CREATE TABLE ${AppHelper.educationalStagesTableName} "
+          "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
+          "${AppHelper.educationalStagesName}  TEXT,"
+          "${AppHelper.educationalStagesDes} TEXT, "
+          "${AppHelper.educationalStagesCreateAt} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+          "${AppHelper.educationalStagesImage} TEXT)",
+        );
       },
       onOpen: (db) async {
         await db.execute("PRAGMA foreign_keys = on");
@@ -89,24 +90,18 @@ class SqFliteDatabase extends Crud {
     int update = await _database!.update(tableName, values, where: where);
     return update > 0 ? true : false;
   }
-}
 
-class EducationalStagesOperation extends SqFliteDatabase {
-  Future<bool> insertEducationalStages(ItemStageModel model) {
-    return inseretData(
-      tableName: AppHelper.educationalStagesTableName,
-      values: model.toJson(),
+  //! Search Data
+  @override
+  Future<List<Map<String, Object?>>> searchData({
+    required String tableName,
+    required String where,
+  }) async {
+    await _initDatabse();
+    List<Map<String, Object?>> data = await _database!.query(
+      tableName,
+      where: where,
     );
-  }
-
-  Future<List<ItemStageModel>> getAllEducationalData() async {
-    List<ItemStageModel> items = [];
-    List<Map<String, Object?>> data = await getData(
-      tableName: AppHelper.educationalStagesTableName,
-    );
-    for (var item in data) {
-      items.add(ItemStageModel.fromJson(item));
-    }
-    return items;
+    return data;
   }
 }
