@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
@@ -8,6 +11,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSearchDelegateEducational extends SearchDelegate<String> {
+  Timer? _debounce;
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return super
+        .appBarTheme(context)
+        .copyWith(
+          textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.white,),
+          textTheme: super
+              .appBarTheme(context)
+              .textTheme
+              .copyWith(
+                titleLarge: TextStyle(color: Colors.white, fontSize: 22.sp),
+              ),
+          appBarTheme: AppBarTheme(color: AppColor.primaryColor),
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle: TextStyle(color: Colors.white),
+          ),
+        );
+  }
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -15,7 +38,7 @@ class CustomSearchDelegateEducational extends SearchDelegate<String> {
         onPressed: () {
           query = "";
         },
-        icon: Icon(Icons.close),
+        icon: Icon(Icons.close, color: Colors.white),
       ),
     ];
   }
@@ -26,7 +49,7 @@ class CustomSearchDelegateEducational extends SearchDelegate<String> {
       onPressed: () {
         close(context, "");
       },
-      icon: Icon(Icons.arrow_back_ios),
+      icon: Icon(Icons.arrow_back_ios, color: Colors.white),
     );
   }
 
@@ -53,12 +76,22 @@ class CustomSearchDelegateEducational extends SearchDelegate<String> {
   }
 
   @override
+  void close(BuildContext context, String result) {
+    _debounce?.cancel();
+    super.close(context, result);
+  }
+
+  @override
   Widget buildSuggestions(BuildContext context) {
-    if (query.isNotEmpty) {
-      BlocProvider.of<DatabaseCubit>(
-        context,
-      ).searchAllEducationalData(searchWord: query);
-    }
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(Duration(milliseconds: 500), () {
+      if (query.isNotEmpty) {
+        BlocProvider.of<DatabaseCubit>(
+          context,
+        ).searchAllEducationalData(searchWord: query);
+      }
+    });
+
     return query.isNotEmpty
         ? BlocBuilder<DatabaseCubit, DatabaseState>(
           builder: (context, state) {
