@@ -51,10 +51,14 @@ class SqFliteDatabase extends Crud {
   Future<bool> deleteData({
     required String tableName,
     required String? where,
-    required List<Object?>? whereArgs
+    required List<Object?>? whereArgs,
   }) async {
     await _initDatabse();
-    int delete = await _database!.delete(tableName, where: where, whereArgs: whereArgs);
+    int delete = await _database!.delete(
+      tableName,
+      where: where,
+      whereArgs: whereArgs,
+    );
 
     return delete > 0 ? true : false;
   }
@@ -86,9 +90,15 @@ class SqFliteDatabase extends Crud {
     required String tableName,
     required Map<String, Object> values,
     required String? where,
+    required List<Object?>? whereArgs,
   }) async {
     await _initDatabse();
-    int update = await _database!.update(tableName, values, where: where);
+    int update = await _database!.update(
+      tableName,
+      values,
+      where: where,
+      whereArgs: whereArgs,
+    );
     return update > 0 ? true : false;
   }
 

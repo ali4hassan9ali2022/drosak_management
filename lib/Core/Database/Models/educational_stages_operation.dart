@@ -3,8 +3,8 @@ import 'package:drosak_management/Core/Helper/app_helper.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 
 class EducationalStagesOperation extends SqFliteDatabase {
-  Future<bool> insertEducationalStages(ItemStageModel model) {
-    return inseretData(
+  Future<bool> insertEducationalStages(ItemStageModel model) async {
+    return await inseretData(
       tableName: AppHelper.educationalStagesTableName,
       values: model.toJson(),
     );
@@ -37,8 +37,20 @@ class EducationalStagesOperation extends SqFliteDatabase {
   }
 
   Future<bool> deleteEducatinalStageData({required int id}) async {
-    return deleteData(
+    return await deleteData(
       tableName: AppHelper.educationalStagesTableName,
+      where: "${AppHelper.educationalStagesId} = ?",
+      whereArgs: ["$id"],
+    );
+  }
+
+  Future<bool> updataEducationalStagesData({
+    required int id,
+    required ItemStageModel model,
+  }) async {
+    return await ubdateData(
+      tableName: AppHelper.educationalStagesTableName,
+      values: model.toJson(),
       where: "${AppHelper.educationalStagesId} = ?",
       whereArgs: ["$id"],
     );
