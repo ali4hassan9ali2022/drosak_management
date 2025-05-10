@@ -15,24 +15,24 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   GlobalKey<FormState> keyState = GlobalKey();
   void addNewEducatonal() async {
     emit(LoadingAddEducational());
-    try{
+    try {
       EducationalStagesOperation educationalStagesOperation =
-        EducationalStagesOperation();
-    bool inseret = await educationalStagesOperation.insertEducationalStages(
-      ItemStageModel(
-        id: 1,
-        name: nameEdController.text,
-        desc: descEdController.text,
-        image: profilePic?.path ?? "",
-      ),
-    );
-    print(inseret);
-    nameEdController.clear();
-    descEdController.clear();
-    profilePic = null;
-    emit(SuccsesAddEducational());
-    getAllEducationalData();
-    } catch(e) {
+          EducationalStagesOperation();
+      bool inseret = await educationalStagesOperation.insertEducationalStages(
+        ItemStageModel(
+          id: 1,
+          name: nameEdController.text,
+          desc: descEdController.text,
+          image: profilePic?.path ?? "",
+        ),
+      );
+      print(inseret);
+      nameEdController.clear();
+      descEdController.clear();
+      profilePic = null;
+      emit(SuccsesAddEducational());
+      getAllEducationalData();
+    } catch (e) {
       emit(FailureAddEducational(errMessage: "Error"));
     }
   }
@@ -40,14 +40,30 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   List<ItemStageModel> getData = [];
   void getAllEducationalData() async {
     emit(LoadingGetDataEducational());
-    try{
+    try {
       EducationalStagesOperation educationalStagesOperation =
-        EducationalStagesOperation();
-    getData = await educationalStagesOperation.getAllEducationalData();
-    print("Data is $getData");
-    emit(SuccsesGetDataEducational(itemStageModel: getData));
-    }catch(e) {
+          EducationalStagesOperation();
+      getData = await educationalStagesOperation.getAllEducationalData();
+      print("Data is $getData");
+      emit(SuccsesGetDataEducational(itemStageModel: getData));
+    } catch (e) {
       emit(FailureGetDateEducational(errMessage: "Error"));
+    }
+  }
+
+  List<ItemStageModel> searchData = [];
+  void searchAllEducationalData({required String searchWord}) async {
+    emit(LoadingSearchDataEducational());
+    try {
+      EducationalStagesOperation educationalStagesOperation =
+          EducationalStagesOperation();
+      getData = await educationalStagesOperation.getSearchEducationalData(
+        searchWord: searchWord,
+      );
+      print("Data is $searchData");
+      emit(SuccsesSearchDataEducational(itemStageModel: searchData));
+    } catch (e) {
+      emit(FailureSearchDateEducational(errMessage: "Error"));
     }
   }
 
@@ -55,6 +71,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     profilePic = XFile(image.path);
     emit(UploadProfilePic());
   }
+
   removeProfilePic() {
     profilePic = null;
     emit(RemoveProfilePic());
