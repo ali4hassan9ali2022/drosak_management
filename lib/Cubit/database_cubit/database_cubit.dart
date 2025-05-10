@@ -67,6 +67,21 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     }
   }
 
+  void deleteDstaEducationalStages({required int id}) async {
+    try {
+      EducationalStagesOperation educationalStagesOperation =
+          EducationalStagesOperation();
+      bool delete = await educationalStagesOperation.deleteEducatinalStageData(
+        id: id,
+      );
+      print("Delete: $delete");
+      emit(SuccessDeleteDataEducationalStaeg());
+      getAllEducationalData();
+    } catch (e) {
+      emit(FailureDeleteDataEducationalStaeg(errMessage: "Error"));
+    }
+  }
+
   uploadProfilePic(File image) {
     profilePic = XFile(image.path);
     emit(UploadProfilePic());

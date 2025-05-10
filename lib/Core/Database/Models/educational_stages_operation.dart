@@ -35,4 +35,12 @@ class EducationalStagesOperation extends SqFliteDatabase {
     }
     return items;
   }
+
+  Future<bool> deleteEducatinalStageData({required int id}) async {
+    return deleteData(
+      tableName: AppHelper.educationalStagesTableName,
+      where: "${AppHelper.educationalStagesId} = ?",
+      whereArgs: ["$id"],
+    );
+  }
 }

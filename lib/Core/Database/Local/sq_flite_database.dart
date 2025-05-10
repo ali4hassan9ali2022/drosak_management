@@ -51,9 +51,10 @@ class SqFliteDatabase extends Crud {
   Future<bool> deleteData({
     required String tableName,
     required String? where,
+    required List<Object?>? whereArgs
   }) async {
     await _initDatabse();
-    int delete = await _database!.delete(tableName, where: where);
+    int delete = await _database!.delete(tableName, where: where, whereArgs: whereArgs);
 
     return delete > 0 ? true : false;
   }

@@ -38,3 +38,9 @@ class FailureSearchDateEducational extends DatabaseState {
   FailureSearchDateEducational({required this.errMessage});
 
 }
+class SuccessDeleteDataEducationalStaeg extends DatabaseState{}
+class FailureDeleteDataEducationalStaeg extends DatabaseState{
+  final String errMessage;
+
+  FailureDeleteDataEducationalStaeg({required this.errMessage});
+}
