@@ -64,7 +64,7 @@ AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
     ],
     backgroundColor: AppColor.primaryColor,
     title: Text(
-      cubit.titles[cubit.currentIndex],
+      "${cubit.titles[cubit.currentIndex]} ${db.getData.length}",
       style: AppStyles.styleMedium15(context),
     ),
   );

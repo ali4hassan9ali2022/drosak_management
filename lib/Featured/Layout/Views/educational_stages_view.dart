@@ -11,6 +11,7 @@ class EducationalStagesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = BlocProvider.of<DatabaseCubit>(context);
     return BlocBuilder<DatabaseCubit, DatabaseState>(
       builder: (context, state) {
         if (state is SuccsesGetDataEducational) {
@@ -19,16 +20,23 @@ class EducationalStagesView extends StatelessWidget {
               horizontal: SizeConfig.kPadding18.w,
               vertical: SizeConfig.kPadding18.h,
             ),
-            child: ListView.separated(
-              physics: BouncingScrollPhysics(),
-              itemBuilder:
-                  (context, index) => CustomEducationalItem(
-                    index: index + 1,
-                    items: state.itemStageModel[index],
-                  ),
-              separatorBuilder:
-                  (context, index) => SizedBox(height: SizeConfig.kHeight16),
-              itemCount: state.itemStageModel.length,
+            child: RefreshIndicator(
+              onRefresh: () async {
+                state.itemStageModel.clear();
+                await Future.delayed(Duration(milliseconds: 750));
+                cubit.getAllEducationalData();
+              },
+              child: ListView.separated(
+                physics: BouncingScrollPhysics(),
+                itemBuilder:
+                    (context, index) => CustomEducationalItem(
+                      index: index + 1,
+                      items: state.itemStageModel[index],
+                    ),
+                separatorBuilder:
+                    (context, index) => SizedBox(height: SizeConfig.kHeight16),
+                itemCount: state.itemStageModel.length,
+              ),
             ),
           );
         } else if (state is LoadingGetDataEducational) {

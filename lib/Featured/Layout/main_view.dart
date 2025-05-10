@@ -16,7 +16,7 @@ class MainView extends StatelessWidget {
     var databaseCubit = BlocProvider.of<DatabaseCubit>(context);
     print(index);
     appCubit.changeBottomNavBar(index);
-    if(index == 0) {
+    if (index == 0) {
       databaseCubit.getAllEducationalData();
     }
     return BlocConsumer<AppCubit, AppState>(
@@ -28,11 +28,10 @@ class MainView extends StatelessWidget {
             appBar: buildAppBar(context: context, cubit: appCubit),
             bottomNavigationBar: CustomBottomNavigationBar(
               onTap: (value) {
-                
                 appCubit.changeBottomNavBar(value);
-                if(index == 0) {
-      databaseCubit.getAllEducationalData();
-    }
+                if (index == 0) {
+                  databaseCubit.getAllEducationalData();
+                }
               },
               currentIndex: appCubit.currentIndex,
               items: appCubit.icons,
@@ -42,15 +41,15 @@ class MainView extends StatelessWidget {
               controller: appCubit.pageMainController,
               onPageChanged: (value) {
                 appCubit.changePageMainView(value);
-                if(value == 0) {
-      databaseCubit.getAllEducationalData();
-    }
+                if (value == 0) {
+                  databaseCubit.getAllEducationalData();
+                }
               },
               itemBuilder: (context, index) {
                 return AnimatedSwitcher(
                   duration: Duration(milliseconds: 500),
                   switchInCurve: Curves.easeInOut,
-          
+
                   child: appCubit.pages[appCubit.currentIndex],
                 );
               },

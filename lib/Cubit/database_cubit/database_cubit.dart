@@ -50,7 +50,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       emit(FailureGetDateEducational(errMessage: "Error"));
     }
   }
-
+//! Search
   List<ItemStageModel> searchData = [];
   void searchAllEducationalData({required String searchWord}) async {
     emit(LoadingSearchDataEducational());
@@ -64,7 +64,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       emit(FailureSearchDateEducational(errMessage: "Error"));
     }
   }
-
+//! Delete Data
   void deleteDstaEducationalStages({required int id}) async {
     try {
       bool delete = await educationalStagesOperation.deleteEducatinalStageData(
@@ -78,7 +78,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       emit(FailureDeleteDataEducationalStaeg(errMessage: "Error"));
     }
   }
-
+  //! updata New Educatonal
   void updataNewEducatonal({required ItemStageModel items}) async {
     try {
       bool update = await educationalStagesOperation

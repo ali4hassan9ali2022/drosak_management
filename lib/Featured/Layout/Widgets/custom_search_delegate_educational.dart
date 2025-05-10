@@ -17,7 +17,7 @@ class CustomSearchDelegateEducational extends SearchDelegate<String> {
     return super
         .appBarTheme(context)
         .copyWith(
-          textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.white,),
+          textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.white),
           textTheme: super
               .appBarTheme(context)
               .textTheme
@@ -72,6 +72,7 @@ class CustomSearchDelegateEducational extends SearchDelegate<String> {
     BlocProvider.of<DatabaseCubit>(
       context,
     ).searchAllEducationalData(searchWord: query);
+
     super.showResults(context);
   }
 

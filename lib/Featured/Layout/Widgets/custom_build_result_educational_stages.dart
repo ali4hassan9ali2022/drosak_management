@@ -23,9 +23,12 @@ class CustomBuildResultEducationalStages extends StatelessWidget {
             child: ListView.separated(
               physics: BouncingScrollPhysics(),
               itemBuilder:
-                  (context, index) => CustomEducationalItem(
-                    index: index + 1,
-                    items: state.itemStageModel[index],
+                  (context, index) => Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: CustomEducationalItem(
+                      index: index + 1,
+                      items: state.itemStageModel[index],
+                    ),
                   ),
               separatorBuilder:
                   (context, index) => SizedBox(height: SizeConfig.kHeight16),
