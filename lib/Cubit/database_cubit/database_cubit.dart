@@ -12,6 +12,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   TextEditingController nameEdController = TextEditingController();
   TextEditingController descEdController = TextEditingController();
   XFile? profilePic;
+  late ItemStageModel itemStageModel;
+  late EducationalStagesOperation educationalStagesOperation;
   GlobalKey<FormState> keyState = GlobalKey();
   void addNewEducatonal() async {
     emit(LoadingAddEducational());
@@ -41,10 +43,10 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   void getAllEducationalData() async {
     emit(LoadingGetDataEducational());
     try {
-      EducationalStagesOperation educationalStagesOperation =
-          EducationalStagesOperation();
+      educationalStagesOperation = EducationalStagesOperation();
       getData = await educationalStagesOperation.getAllEducationalData();
       print("Data is $getData");
+      print("Data is ${getData.length}");
       emit(SuccsesGetDataEducational(itemStageModel: getData));
     } catch (e) {
       emit(FailureGetDateEducational(errMessage: "Error"));
@@ -55,8 +57,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   void searchAllEducationalData({required String searchWord}) async {
     emit(LoadingSearchDataEducational());
     try {
-      EducationalStagesOperation educationalStagesOperation =
-          EducationalStagesOperation();
+      educationalStagesOperation = EducationalStagesOperation();
       searchData = await educationalStagesOperation.getSearchEducationalData(
         searchWord: searchWord,
       );
@@ -69,13 +70,13 @@ class DatabaseCubit extends Cubit<DatabaseState> {
 
   void deleteDstaEducationalStages({required int id}) async {
     try {
-      EducationalStagesOperation educationalStagesOperation =
-          EducationalStagesOperation();
+      educationalStagesOperation = EducationalStagesOperation();
       bool delete = await educationalStagesOperation.deleteEducatinalStageData(
         id: id,
       );
       print("Delete: $delete");
       emit(SuccessDeleteDataEducationalStaeg());
+      getData.removeWhere((element) => element.id == itemStageModel.id);
       getAllEducationalData();
     } catch (e) {
       emit(FailureDeleteDataEducationalStaeg(errMessage: "Error"));

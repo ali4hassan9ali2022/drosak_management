@@ -1,10 +1,9 @@
 import 'package:drosak_management/Core/Widgets/custom_box_shadow.dart';
 import 'package:drosak_management/Core/Widgets/custom_number_item.dart';
-import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/custom_card_educational.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/show_alert_dialog_confirem_delete.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomEducationalItem extends StatelessWidget {
@@ -19,12 +18,20 @@ class CustomEducationalItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // var size = MediaQuery.sizeOf(context);
     return Dismissible(
-      onDismissed: (direction) {
+      confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
-          BlocProvider.of<DatabaseCubit>(
-            context,
-          ).deleteDstaEducationalStages(id: items.id);
-        } else if (direction == DismissDirection.endToStart) {}
+          bool? confirmDlete = await showDialog(
+            context: context,
+            builder: (context) {
+              return ShowAlertDialogConfirmDelete(items: items);
+            },
+          );
+          return confirmDlete;
+        } else if (direction == DismissDirection.endToStart) {
+          return false;
+        }
+
+        return false;
       },
       key: ValueKey(items.id),
       background: Container(
