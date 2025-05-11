@@ -1,17 +1,13 @@
-import 'dart:developer';
-
-import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
-import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Core/Widgets/custom_button.dart';
 import 'package:drosak_management/Core/Widgets/custom_text_form_field.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/groub_widgets/custom_groub_table.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/groub_widgets/select_day_and_time.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/groub_widgets/select_educational_stage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class AddGroubData extends StatelessWidget {
   const AddGroubData({super.key});
@@ -20,60 +16,22 @@ class AddGroubData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            IconButton.filled(
-              onPressed: () {
-                // showDialog(
-                //   barrierDismissible: false,
-                //   context: context,
-                //   builder: (context) {
-                //     return ShowAlertDialog();
-                //   },
-                // );
-              },
-              icon: SvgPicture.asset(Assets.imagesPlaceholderSvg),
-            ),
-            SizedBox(width: 6.w),
-            Expanded(
-              child: CustomTextFormField(
-                errorStyle: TextStyle(color: Colors.white),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "من فضلك ادخل اسم المجموعة";
-                  }
-                  return null;
-                },
-                // controller: cubit.nameEdController,
-                textAlign: TextAlign.end,
-                filled: true,
-                fillColor: Colors.white,
-                hintText: "إسم المجموعة",
-              ),
-            ),
-          ],
+        CustomTextFormField(
+          errorStyle: TextStyle(color: Colors.white),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "من فضلك ادخل اسم المجموعة";
+            }
+            return null;
+          },
+          // controller: cubit.nameEdController,
+          textAlign: TextAlign.end,
+          filled: true,
+          fillColor: Colors.white,
+          hintText: "إسم المجموعة",
         ),
         Divider(height: 20),
-        Row(
-          children: [
-            Expanded(
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: CustomDropdown<String>.search(
-                  hintText: 'اختر المرحلة التعليمية',
-                  noResultFoundText: "لم يتم العثور على اسم المرحلة التعليمية",
-                  items: [],
-                  // initialItem: "a",
-                  onChanged: (value) {
-                    log('changing value to: $value');
-                  },
-                ),
-              ),
-            ),
-            SizedBox(width: SizeConfig.kWidth7),
-            Text("المرحلة التعليمية", style: AppStyles.styleMedium14(context)),
-          ],
-        ),
+        SelectEducationalStage(itemStageModel: [], onChanged: (value) {}),
         SizedBox(height: SizeConfig.kHeight18),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
