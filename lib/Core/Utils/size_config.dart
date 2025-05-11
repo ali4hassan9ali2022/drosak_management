@@ -26,11 +26,19 @@ abstract class SizeConfig {
   static double kHeight16 = 16.h;
   static double kHeight8 = 8.h;
   static double kHeight230 = 230.h;
+  static double kHeight20 = 20.h; 
+  static double kHeight27 = 27.h; 
+  static double kHeight12 = 12.h; 
+  static double kHeight30 = 30.h; 
   //! Width
   static double kWidth360 = 360;
   static double kWidth138 = 138.w;
   static double kWidth32 = 32.w;
   static double kWidth122 = 122.w;
+  static double kWidth7 = 7.w;
+  static double kWidth15 = 15.w;
+  static double kWidth86 = 86.w;
+  static double kWidth10 = 10.w;
   //! BorderRadius
   static double borderRadius18 = 18;
   static double borderRadius12 = 12;

@@ -4,6 +4,7 @@ import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/educational_stages_widgets/add_educational_sheet.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/educational_stages_widgets/custom_search_delegate_educational.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/groub_widgets/add_groub_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,6 +34,16 @@ AppBar buildAppBar({required AppCubit cubit, required BuildContext context}) {
                         child: BlocProvider.value(
                           value: BlocProvider.of<DatabaseCubit>(context),
                           child: AddEducationalSheet(),
+                        ),
+                      );
+                    case 1:
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom * 1,
+                        ),
+                        child: BlocProvider.value(
+                          value: BlocProvider.of<DatabaseCubit>(context),
+                          child: AddGroubSheet(),
                         ),
                       );
                     default:
