@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:drosak_management/Core/Utils/assets.dart';
-import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 import 'package:drosak_management/Featured/Layout/main_view.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
 import 'package:drosak_management/Featured/explore/Models/explore_model.dart';
@@ -107,15 +106,4 @@ abstract class AppHelper {
       arguments: arguments,
     );
   }
-
-  static ItemStageModel? itemStageModel;
 }
-
-
-//  ImagePicker()
-//                                       .pickImage(source: ImageSource.gallery)
-//                                       .then(
-//                                         (value) => BlocProvider.of<UserCubit>(
-//                                           context,
-//                                         ).uploadProfilePic(value!),
-//                                       );

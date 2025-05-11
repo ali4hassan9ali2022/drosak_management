@@ -25,6 +25,7 @@ abstract class SizeConfig {
   static double kHeight150 = 150.h;
   static double kHeight16 = 16.h;
   static double kHeight8 = 8.h;
+  static double kHeight230 = 230.h;
   //! Width
   static double kWidth360 = 360;
   static double kWidth138 = 138.w;

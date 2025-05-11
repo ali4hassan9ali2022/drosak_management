@@ -1,5 +1,6 @@
 import 'package:drosak_management/Core/Database/Local/crud.dart';
 import 'package:drosak_management/Core/Helper/app_helper.dart';
+import 'package:drosak_management/Core/Helper/app_helper_groub.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -10,23 +11,39 @@ class SqFliteDatabase extends Crud {
     String drosakDatabaseName = "drosak.db";
 
     String dbPath = join(databasePath, drosakDatabaseName);
-    int versionDatabase = 2;
+    int versionDatabase = 1;
     _database ??= await openDatabase(
       dbPath,
       version: versionDatabase,
       onCreate: _onCreate,
       onUpgrade: (db, oldVersion, newVersion) async {
+        // await db.execute(
+        //   "DROP TABLE IF EXISTS ${AppHelper.educationalStagesTableName}",
+        // );
         await db.execute(
-          "DROP TABLE IF EXISTS ${AppHelper.educationalStagesTableName}",
-        );
-        await db.execute(
-          "CREATE TABLE ${AppHelper.educationalStagesTableName} "
+          "DROP TABLE IF EXISTS ${AppHelper.educationalStagesTableName}"
           "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
           "${AppHelper.educationalStagesName}  TEXT,"
           "${AppHelper.educationalStagesDes} TEXT, "
           "${AppHelper.educationalStagesCreateAt} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
           "${AppHelper.educationalStagesImage} TEXT)",
         );
+        await db.execute(
+          "DROP TABLE IF EXISTS ${AppHelperGroub.groudTableName} "
+          "(${AppHelperGroub.groudId} INTEGER PRIMARY KEY AUTOINCREMENT,"
+          "${AppHelperGroub.groudName}  TEXT,"
+          "${AppHelperGroub.groudImage} TEXT, "
+          "${AppHelperGroub.groudNote} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+          "${AppHelperGroub.groudIdToEducational} INTEGER)",
+        );
+        await db.execute(
+          "DROP TABLE IF EXISTS${AppHelperGroub.appointmentTableName} "
+      "(${AppHelperGroub.appointmentId} INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "${AppHelperGroub.appointmentDay}  TEXT,"
+      "${AppHelperGroub.appointmentHour} TEXT, "
+      "${AppHelperGroub.appointmentTime} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+      "${AppHelperGroub.appointmentIdToGroub} INTEGER)",
+    );
       },
       onOpen: (db) async {
         await db.execute("PRAGMA foreign_keys = on");
@@ -36,6 +53,7 @@ class SqFliteDatabase extends Crud {
   }
 
   _onCreate(Database db, int version) async {
+    //! Create Educational Stages Table
     await db.execute(
       "CREATE TABLE ${AppHelper.educationalStagesTableName} "
       "(${AppHelper.educationalStagesId} INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -43,6 +61,24 @@ class SqFliteDatabase extends Crud {
       "${AppHelper.educationalStagesDes} TEXT, "
       "${AppHelper.educationalStagesCreateAt} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
       "${AppHelper.educationalStagesImage} TEXT)",
+    );
+    //! Create Groub Table
+    await db.execute(
+      "CREATE TABLE ${AppHelperGroub.groudTableName} "
+      "(${AppHelperGroub.groudId} INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "${AppHelperGroub.groudName}  TEXT,"
+      "${AppHelperGroub.groudImage} TEXT, "
+      "${AppHelperGroub.groudNote} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+      "${AppHelperGroub.groudIdToEducational} INTEGER)",
+    );
+    //! Create Groub Table
+    await db.execute(
+      "CREATE TABLE ${AppHelperGroub.appointmentTableName} "
+      "(${AppHelperGroub.appointmentId} INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "${AppHelperGroub.appointmentDay}  TEXT,"
+      "${AppHelperGroub.appointmentHour} TEXT, "
+      "${AppHelperGroub.appointmentTime} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+      "${AppHelperGroub.appointmentIdToGroub} INTEGER)",
     );
   }
 

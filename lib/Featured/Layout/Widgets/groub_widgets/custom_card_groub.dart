@@ -11,7 +11,8 @@ class CustomCardGroub extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: SizeConfig.kHeight150,
+      // height: size.height * 0.33,
+      height: SizeConfig.kHeight230,
       decoration: ShapeDecoration(
         shadows: [
           BoxShadow(
