@@ -7,7 +7,7 @@ import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Core/Widgets/custom_button.dart';
 import 'package:drosak_management/Core/Widgets/custom_text_form_field.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
-import 'package:drosak_management/Featured/Layout/Widgets/show_alert_dialog.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/educational_stages_widgets/show_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

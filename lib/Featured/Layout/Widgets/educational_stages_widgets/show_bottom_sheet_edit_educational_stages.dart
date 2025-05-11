@@ -3,7 +3,7 @@ import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
-import 'package:drosak_management/Featured/Layout/Widgets/add_educational_data.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/educational_stages_widgets/add_educational_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

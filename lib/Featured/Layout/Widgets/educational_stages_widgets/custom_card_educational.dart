@@ -1,7 +1,7 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
-import 'package:drosak_management/Featured/Layout/Widgets/card_educational_dara.dart';
+import 'package:drosak_management/Featured/Layout/Widgets/educational_stages_widgets/card_educational_dara.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
