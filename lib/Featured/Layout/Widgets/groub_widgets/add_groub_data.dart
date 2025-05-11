@@ -33,24 +33,15 @@ class AddGroubData extends StatelessWidget {
         Divider(height: 20),
         SelectEducationalStage(itemStageModel: [], onChanged: (value) {}),
         SizedBox(height: SizeConfig.kHeight18),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-          children: [
-            SelectDayAndTime(
-              itmes: [],
-              text: "اليوم",
-              hintText: "اختر اليوم",
-              onChanged: (p0) {},
-            ),
-            SizedBox(width: 15),
-            SelectDayAndTime(
-              itmes: [],
-              onChanged: (p0) {},
-              text: "الوقت",
-              hintText: "اختر الوقت",
-            ),
-          ],
+        SelectDayAndTime(
+          onPressedTime: () {
+            showTimePicker(context: context, initialTime: TimeOfDay.now());
+          },
+          itmesDays: [],
+          onChangedDays: (p0) {},
+          textDays: "اليوم",
+          hintText: "اختر اليوم",
+          textTime: "اختر الوقت",
         ),
         SizedBox(height: SizeConfig.kHeight20),
         CustomButton(

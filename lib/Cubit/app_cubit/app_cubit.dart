@@ -16,6 +16,17 @@ class AppCubit extends Cubit<AppState> {
   int currentIndex = 0;
   PageController pageController = PageController();
   PageController pageMainController = PageController();
+  // bool hasMainView = false;
+  // void initMainView(int index) {
+  //   if(!hasMainView) {
+  //     changeBottomNavBar(index);
+  //     hasMainView = true;
+  //   }
+  // }
+
+  // void resetMainView() {
+  //   hasMainView = false;
+  // }
   void changePageView(int index) {
     currentIndex = index;
     emit(ChangePageViewAppState());

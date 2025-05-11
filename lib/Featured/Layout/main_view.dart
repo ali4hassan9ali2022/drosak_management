@@ -6,19 +6,36 @@ import 'package:drosak_management/Featured/Layout/Widgets/custom_bottom_navigati
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MainView extends StatelessWidget {
+class MainView extends StatefulWidget {
   const MainView({super.key});
   static String id = "MainView";
+
+  @override
+  State<MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> {
+  late int initIndex;
+  bool initialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!initialized) {
+      initIndex = ModalRoute.of(context)!.settings.arguments as int;
+      BlocProvider.of<AppCubit>(context).changeBottomNavBar(initIndex);
+      if (initIndex == 0) {
+        BlocProvider.of<DatabaseCubit>(context).getAllEducationalData();
+      }
+      initialized = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    int index = ModalRoute.of(context)!.settings.arguments as int;
     var appCubit = BlocProvider.of<AppCubit>(context);
     var databaseCubit = BlocProvider.of<DatabaseCubit>(context);
-    print(index);
-    appCubit.changeBottomNavBar(index);
-    if (index == 0) {
-      databaseCubit.getAllEducationalData();
-    }
+
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -29,7 +46,7 @@ class MainView extends StatelessWidget {
             bottomNavigationBar: CustomBottomNavigationBar(
               onTap: (value) {
                 appCubit.changeBottomNavBar(value);
-                if (index == 0) {
+                if (value == 0) {
                   databaseCubit.getAllEducationalData();
                 }
               },
@@ -37,8 +54,8 @@ class MainView extends StatelessWidget {
               items: appCubit.icons,
             ),
             body: PageView.builder(
-              itemCount: appCubit.pages.length,
               controller: appCubit.pageMainController,
+              itemCount: appCubit.pages.length,
               onPageChanged: (value) {
                 appCubit.changePageMainView(value);
                 if (value == 0) {
@@ -48,8 +65,6 @@ class MainView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return AnimatedSwitcher(
                   duration: Duration(milliseconds: 500),
-                  switchInCurve: Curves.easeInOut,
-
                   child: appCubit.pages[appCubit.currentIndex],
                 );
               },

@@ -16,7 +16,7 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.textAlign,
     this.maxLines,
-    this.errorStyle,
+    this.errorStyle, this.hintStyle,
   });
   final String? hintText;
   final Widget? label;
@@ -32,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextAlign? textAlign;
   final int? maxLines;
   final TextStyle? errorStyle;
+  final TextStyle? hintStyle;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -44,6 +45,7 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
+        hintStyle: hintStyle,
         errorStyle: errorStyle,
         contentPadding: EdgeInsets.zero,
         hintText: hintText,
