@@ -32,7 +32,6 @@ class SqFliteDatabase extends Crud {
           "DROP TABLE IF EXISTS ${AppHelperGroub.groudTableName} "
           "(${AppHelperGroub.groudId} INTEGER PRIMARY KEY AUTOINCREMENT,"
           "${AppHelperGroub.groudName}  TEXT,"
-          "${AppHelperGroub.groudImage} TEXT, "
           "${AppHelperGroub.groudNote} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
           "${AppHelperGroub.groudIdToEducational} INTEGER)",
         );
@@ -67,7 +66,6 @@ class SqFliteDatabase extends Crud {
       "CREATE TABLE ${AppHelperGroub.groudTableName} "
       "(${AppHelperGroub.groudId} INTEGER PRIMARY KEY AUTOINCREMENT,"
       "${AppHelperGroub.groudName}  TEXT,"
-      "${AppHelperGroub.groudImage} TEXT, "
       "${AppHelperGroub.groudNote} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
       "${AppHelperGroub.groudIdToEducational} INTEGER)",
     );

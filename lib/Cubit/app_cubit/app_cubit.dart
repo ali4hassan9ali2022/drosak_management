@@ -88,7 +88,7 @@ class AppCubit extends Cubit<AppState> {
     ),
   ];
   List<String> titles = [
-    "المراحل التعليميمة",
+    "المراحل التعليميمة ",
     "المجموعات",
     "الطلاب",
     "الحضور",

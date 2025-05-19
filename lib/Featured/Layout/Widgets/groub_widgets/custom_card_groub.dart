@@ -11,7 +11,7 @@ class CustomCardGroub extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.sizeOf(context).height * 0.42,
+      height: MediaQuery.sizeOf(context).height * 0.42.h,
       // height: SizeConfig.kHeight230,
       decoration: ShapeDecoration(
         shadows: [

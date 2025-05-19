@@ -10,8 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddGroubData extends StatelessWidget {
-  const AddGroubData({super.key});
-
+  const AddGroubData({
+    super.key,
+    required this.onChangedvalueMS,
+    required this.groubValueMS,
+  });
+  final void Function(String?) onChangedvalueMS;
+  final String groubValueMS;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,7 +48,15 @@ class AddGroubData extends StatelessWidget {
           hintText: "اختر اليوم",
           textTime: "اختر الوقت",
         ),
-        SizedBox(height: SizeConfig.kHeight20),
+        // SizedBox(height: SizeConfig.kHeight12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            customRadio(value: "PM", groupValue: groubValueMS),
+            customRadio(value: "AM", groupValue: groubValueMS),
+          ],
+        ),
+        SizedBox(height: SizeConfig.kHeight12),
         CustomButton(
           borderRadius: SizeConfig.borderRadius12.r,
           color: AppColor.primaryColor,
@@ -65,9 +78,7 @@ class AddGroubData extends StatelessWidget {
           ),
         ),
         SizedBox(height: SizeConfig.kHeight12),
-        CustomGroubTable(
-          isShow: true,
-        ),
+        CustomGroubTable(isShow: true),
         SizedBox(height: SizeConfig.kHeight30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,6 +109,28 @@ class AddGroubData extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget customRadio({required String value, required String groupValue}) {
+    return Row(
+      children: [
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        Radio(
+          activeColor: Colors.white,
+
+          value: value,
+          groupValue: groupValue,
+          onChanged: onChangedvalueMS,
         ),
       ],
     );

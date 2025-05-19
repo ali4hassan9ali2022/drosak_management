@@ -21,7 +21,9 @@ class AddGroubSheet extends StatelessWidget {
           topRight: Radius.circular(SizeConfig.borderRadius12.r),
         ),
       ),
-      child: SingleChildScrollView(child: AddGroubData()),
+      child: SingleChildScrollView(
+        child: AddGroubData(groubValueMS: "AM", onChangedvalueMS: (value) {}),
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:drosak_management/Core/Helper/app_helper_groub.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -83,99 +84,62 @@ class CustomGroubTable extends StatelessWidget {
                   : SizedBox(),
             ],
           ),
-          for (int i = 0; i <= 6; i++)
+          for (int i = 0; i < AppHelperGroub.items.length; i++)
             TableRow(
-              children: List.generate(
-                4,
-                (index) => Padding(
+              children: [
+                Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 10.w,
-                    vertical: 4.h,
+                    vertical: SizeConfig.kPadding4.h,
+                    horizontal: SizeConfig.kPadding14.w,
                   ),
-                  child:
-                      index == 3
-                          ? Icon(Icons.delete, color: Colors.white)
-                          : Center(
-                            child: Text(
-                              "${index + 1}",
-                              style: AppStyles.styleMedium10(
-                                context,
-                              ).copyWith(color: Colors.white),
-                            ),
-                          ),
+                  child: Center(
+                    child: Text(
+                      AppHelperGroub.items[i].day,
+                      style: AppStyles.styleMedium12(context).copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: SizeConfig.kPadding4.h,
+                    horizontal: SizeConfig.kPadding14.w,
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppHelperGroub.items[i].time,
+                      style: AppStyles.styleMedium12(context).copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: SizeConfig.kPadding4.h,
+                    horizontal: SizeConfig.kPadding14.w,
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppHelperGroub.items[i].ms,
+                      style: AppStyles.styleMedium12(context).copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.delete, color: Colors.white),
+                ),
+              ],
             ),
         ],
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-// [
-//             Padding(
-//               padding: EdgeInsets.only(
-//                 top: 9.h,
-//                 bottom: 36.h,
-//                 left: 7.w,
-//                 right: 14.w,
-//               ),
-//               child: Center(
-//                 child: Text(
-//                   "السبت",
-//                   style: AppStyles.styleMedium12(
-//                     context,
-//                   ).copyWith(
-//                     color: Colors.white,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             Padding(
-//               padding: EdgeInsets.only(
-//                 top: 7.h,
-//                 bottom: 40.h,
-//                 left: 16.w,
-//                 right: 10.w,
-//               ),
-//               child: Center(
-//                 child: Text(
-//                   "10 : 30",
-//                   style: AppStyles.styleMedium12(
-//                     context,
-//                   ).copyWith(
-//                     color: Colors.white,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             Padding(
-//               padding: EdgeInsets.only(
-//                 top: 8.h,
-//                 bottom: 36.h,
-//                 left: 26.w,
-//                 right: 23.w,
-//               ),
-//               child: Center(
-//                 child: Text(
-//                   "م",
-//                   style: AppStyles.styleMedium12(
-//                     context,
-//                   ).copyWith(
-//                     color: Colors.white,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ],
