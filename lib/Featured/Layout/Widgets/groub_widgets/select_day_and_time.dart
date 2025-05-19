@@ -58,7 +58,6 @@ class SelectDayAndTime extends StatelessWidget {
                   textDirection: TextDirection.rtl,
                   child: CustomDropdown.search(
                     hintText: "اختر اليوم",
-
                     items: itmesDays,
                     onChanged: onChangedDays,
                   ),

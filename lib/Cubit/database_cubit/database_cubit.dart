@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:drosak_management/Core/Database/Models/educational_stages_operation.dart';
+import 'package:drosak_management/Core/Helper/app_helper_groub.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
-import 'package:flutter/widgets.dart';
+import 'package:drosak_management/Featured/Layout/Models/time_day_groub_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,6 +18,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   EducationalStagesOperation educationalStagesOperation =
       EducationalStagesOperation();
   GlobalKey<FormState> keyState = GlobalKey();
+  //! Add Educational
   void addNewEducatonal() async {
     emit(LoadingAddEducational());
     try {
@@ -38,6 +41,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     }
   }
 
+  //! Get Educatioanl Data
   List<ItemStageModel> getData = [];
   void getAllEducationalData() async {
     emit(LoadingGetDataEducational());
@@ -50,7 +54,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       emit(FailureGetDateEducational(errMessage: "Error"));
     }
   }
-//! Search
+
+  //! Search
   List<ItemStageModel> searchData = [];
   void searchAllEducationalData({required String searchWord}) async {
     emit(LoadingSearchDataEducational());
@@ -64,7 +69,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       emit(FailureSearchDateEducational(errMessage: "Error"));
     }
   }
-//! Delete Data
+
+  //! Delete Data
   void deleteDstaEducationalStages({required int id}) async {
     try {
       bool delete = await educationalStagesOperation.deleteEducatinalStageData(
@@ -78,6 +84,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       emit(FailureDeleteDataEducationalStaeg(errMessage: "Error"));
     }
   }
+
   //! updata New Educatonal
   void updataNewEducatonal({required ItemStageModel items}) async {
     try {
@@ -99,5 +106,38 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   removeProfilePic() {
     profilePic = null;
     emit(RemoveProfilePic());
+  }
+
+  void initAllData() {
+    getAllEducationalData();
+  }
+
+  TimeOfDay? time;
+  void selectOfTime({required TimeOfDay selectTime}) {
+    time = selectTime;
+    emit(SelectTimeDatabaseState());
+  }
+
+  String? day;
+  void selectOfDay({required String selectDay}) {
+    day = selectDay;
+    emit(SelectDayDatabaseState());
+  }
+
+  String? value;
+  void selectOfMS({required String selectValue}) {
+    value = selectValue;
+    emit(SelectMSDatabaseState());
+  }
+
+  void addToTable({required String groubValueMS}) {
+    AppHelperGroub.items.add(
+      TimeDayGroubModel(
+        day: day!,
+        time: "${time!.hour} : ${time!.minute}",
+        ms: groubValueMS,
+      ),
+    );
+    emit(AddToTableDatabaseState());
   }
 }

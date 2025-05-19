@@ -50,3 +50,7 @@ class FailureUpdateDataEducationalStaeg extends DatabaseState{
 
   FailureUpdateDataEducationalStaeg({required this.errMessage});
 }
+class SelectTimeDatabaseState extends DatabaseState{}
+class SelectDayDatabaseState extends DatabaseState{}
+class SelectMSDatabaseState extends DatabaseState{}
+class AddToTableDatabaseState extends DatabaseState{}
