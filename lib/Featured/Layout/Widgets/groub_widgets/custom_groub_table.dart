@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGroubTable extends StatelessWidget {
-  const CustomGroubTable({super.key});
-
+  const CustomGroubTable({super.key, required this.isShow});
+  final bool isShow;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -64,25 +64,45 @@ class CustomGroubTable extends StatelessWidget {
                   ),
                 ),
               ),
+              isShow
+                  ? Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: SizeConfig.kPadding4.h,
+                      horizontal: SizeConfig.kPadding14.w,
+                    ),
+                    child: Center(
+                      child: Text(
+                        "حذف",
+                        style: AppStyles.styleMedium12(context).copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  )
+                  : SizedBox(),
             ],
           ),
           for (int i = 0; i <= 6; i++)
             TableRow(
               children: List.generate(
-                3,
+                4,
                 (index) => Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 10.w,
                     vertical: 4.h,
                   ),
-                  child: Center(
-                    child: Text(
-                      "${index + 1}",
-                      style: AppStyles.styleMedium10(
-                        context,
-                      ).copyWith(color: Colors.white),
-                    ),
-                  ),
+                  child:
+                      index == 3
+                          ? Icon(Icons.delete, color: Colors.white)
+                          : Center(
+                            child: Text(
+                              "${index + 1}",
+                              style: AppStyles.styleMedium10(
+                                context,
+                              ).copyWith(color: Colors.white),
+                            ),
+                          ),
                 ),
               ),
             ),

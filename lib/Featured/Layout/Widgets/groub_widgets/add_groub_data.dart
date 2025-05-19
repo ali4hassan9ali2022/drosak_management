@@ -65,7 +65,9 @@ class AddGroubData extends StatelessWidget {
           ),
         ),
         SizedBox(height: SizeConfig.kHeight12),
-        CustomGroubTable(),
+        CustomGroubTable(
+          isShow: true,
+        ),
         SizedBox(height: SizeConfig.kHeight30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

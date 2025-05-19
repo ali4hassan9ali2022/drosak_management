@@ -29,7 +29,7 @@ class CardGroubData extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: SizeConfig.kHeight8),
-                Expanded(child: CustomGroubTable()),
+                Expanded(child: CustomGroubTable(isShow: false)),
                 SizedBox(height: SizeConfig.kHeight8),
                 Text(
                   overflow: TextOverflow.ellipsis,
