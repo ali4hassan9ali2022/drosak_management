@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
@@ -32,7 +34,7 @@ class AddGroubSheet extends StatelessWidget {
               groubValueMS: cubit.value.toString(),
               onChangedvalueMS: (value) {
                 cubit.selectOfMS(selectValue: value!);
-                print(cubit.value);
+                log("${cubit.value}");
               },
             ),
           ),

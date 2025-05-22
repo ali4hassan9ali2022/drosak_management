@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:drosak_management/Core/Helper/app_helper_groub.dart';
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
@@ -32,14 +35,18 @@ class AddGroubData extends StatelessWidget {
             }
             return null;
           },
-          // controller: cubit.nameEdController,
+          controller: cubit.groubNameEdController,
           textAlign: TextAlign.end,
           filled: true,
           fillColor: Colors.white,
           hintText: "إسم المجموعة",
         ),
         Divider(height: 20),
-        SelectEducationalStage(),
+        SelectEducationalStage(
+          onChanged: (vlaue) {
+            cubit.itemStageModelEducatioanlStage = vlaue;
+          },
+        ),
         SizedBox(height: SizeConfig.kHeight18),
         SelectDayAndTime(
           onPressedTime: () async {
@@ -50,7 +57,7 @@ class AddGroubData extends StatelessWidget {
             );
             if (time != null) {
               cubit.selectOfTime(selectTime: time);
-              print(cubit.time);
+              log("${cubit.time}");
             }
           },
           itmesDays: [
@@ -64,7 +71,7 @@ class AddGroubData extends StatelessWidget {
           ],
           onChangedDays: (day) {
             cubit.selectOfDay(selectDay: day);
-            print(cubit.day);
+            log("${cubit.day}");
           },
           textDays: "اليوم",
           hintText: "اختر اليوم",
@@ -94,8 +101,8 @@ class AddGroubData extends StatelessWidget {
             if (cubit.time == null) requiredData = "اختار وقت";
             if (cubit.day == null) requiredData = "اختار يوم";
             if (requiredData.isEmpty) {
-              cubit.addToTable(groubValueMS: groubValueMS);
-              print("Done");
+              cubit.addToTableAppointment(groubValueMS: groubValueMS);
+              log("Done");
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -133,26 +140,50 @@ class AddGroubData extends StatelessWidget {
         SizedBox(height: SizeConfig.kHeight30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("ملاحظة", style: AppStyles.styleMedium14(context)),
-          ],
+          children: [Text("ملاحظة", style: AppStyles.styleMedium14(context))],
         ),
         SizedBox(height: SizeConfig.kHeight30),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 26.w),
-          child: CustomButton(
-            borderRadius: SizeConfig.borderRadius12.r,
-            color: AppColor.primaryColor,
-            width: double.infinity,
-            height: SizeConfig.kHeight40,
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.save, color: Colors.white, size: 24.sp),
-                  SizedBox(width: SizeConfig.kWidth10),
-                  Text("حفظ الكل", style: AppStyles.styleMedium16(context)),
-                ],
+          child: GestureDetector(
+            onTap: () {
+              String requiredDage = "";
+              if (cubit.groubNameEdController.text.trim().isEmpty) {
+                requiredDage += "اختار اسم المجموعة";
+              }
+              if (cubit.itemStageModelEducatioanlStage == null) {
+                requiredDage += "حدد الرحلة التعلمية";
+              }
+              if (AppHelperGroub.items.isEmpty) {
+                requiredDage += "اختار مواعيد المجموعة";
+              }
+              if (requiredDage.isEmpty) {
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      requiredDage,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                );
+              }
+            },
+            child: CustomButton(
+              borderRadius: SizeConfig.borderRadius12.r,
+              color: AppColor.primaryColor,
+
+              width: double.infinity,
+              height: SizeConfig.kHeight40,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.save, color: Colors.white, size: 24.sp),
+                    SizedBox(width: SizeConfig.kWidth10),
+                    Text("حفظ الكل", style: AppStyles.styleMedium16(context)),
+                  ],
+                ),
               ),
             ),
           ),

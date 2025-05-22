@@ -16,9 +16,14 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.textAlign,
     this.maxLines,
-    this.errorStyle, this.hintStyle,
+    this.errorStyle,
+    this.hintStyle,
+    this.onChanged,
+    this.onSaved,
   });
   final String? hintText;
+  final Function(dynamic)? onChanged;
+  final Function(dynamic)? onSaved;
   final Widget? label;
   final bool? filled;
   final Color? fillColor;
@@ -40,7 +45,8 @@ class CustomTextFormField extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.start,
       onTap: onTap,
       validator: validator,
-
+      onChanged: onChanged,
+      onSaved: onSaved,
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText ?? false,

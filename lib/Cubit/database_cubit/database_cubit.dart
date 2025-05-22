@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:drosak_management/Core/Database/Models/educational_stages_operation.dart';
@@ -13,8 +14,10 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   DatabaseCubit() : super(InitialDataBaseState());
   TextEditingController nameEdController = TextEditingController();
   TextEditingController descEdController = TextEditingController();
+  TextEditingController groubNameEdController = TextEditingController();
   XFile? profilePic;
   ItemStageModel? itemStageModel;
+  ItemStageModel? itemStageModelEducatioanlStage;
   EducationalStagesOperation educationalStagesOperation =
       EducationalStagesOperation();
   GlobalKey<FormState> keyState = GlobalKey();
@@ -30,7 +33,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
           image: profilePic?.path ?? "",
         ),
       );
-      print(inseret);
+      log("inseret: $inseret");
       nameEdController.clear();
       descEdController.clear();
       profilePic = null;
@@ -47,8 +50,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     emit(LoadingGetDataEducational());
     try {
       getData = await educationalStagesOperation.getAllEducationalData();
-      print("Data is $getData");
-      print("Data is ${getData.length}");
+      log("Data is $getData");
+      log("Data is ${getData.length}");
       emit(SuccsesGetDataEducational(itemStageModel: getData));
     } catch (e) {
       emit(FailureGetDateEducational(errMessage: "Error"));
@@ -63,7 +66,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       searchData = await educationalStagesOperation.getSearchEducationalData(
         searchWord: searchWord,
       );
-      print("Data is $searchData");
+      log("Data is $searchData");
       emit(SuccsesSearchDataEducational(itemStageModel: searchData));
     } catch (e) {
       emit(FailureSearchDateEducational(errMessage: "Error"));
@@ -76,7 +79,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       bool delete = await educationalStagesOperation.deleteEducatinalStageData(
         id: id,
       );
-      print("Delete: $delete");
+      log("Delete: $delete");
       emit(SuccessDeleteDataEducationalStaeg());
       // getData.removeWhere((element) => element.id == id);
       getAllEducationalData();
@@ -90,7 +93,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     try {
       bool update = await educationalStagesOperation
           .updataEducationalStagesData(model: items);
-      print("Update $update");
+      log("$update");
       emit(SuccessUpdataDataEducationalStaeg());
       getAllEducationalData();
     } catch (e) {
@@ -98,39 +101,41 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     }
   }
 
+  //! Upload ProfilePic
   uploadProfilePic(File image) {
     profilePic = XFile(image.path);
     emit(UploadProfilePic());
   }
 
+  //! Remove ProfilePic
   removeProfilePic() {
     profilePic = null;
     emit(RemoveProfilePic());
   }
 
-  void initAllData() {
-    getAllEducationalData();
-  }
-
+  //! Select of Time
   TimeOfDay? time;
   void selectOfTime({required TimeOfDay selectTime}) {
     time = selectTime;
     emit(SelectTimeDatabaseState());
   }
 
+  //! Select of Day
   String? day;
   void selectOfDay({required String selectDay}) {
     day = selectDay;
     emit(SelectDayDatabaseState());
   }
 
+  //! Select of M Or S
   String? value;
   void selectOfMS({required String selectValue}) {
     value = selectValue;
     emit(SelectMSDatabaseState());
   }
 
-  void addToTable({required String groubValueMS}) {
+  //! Add To Table Appointment
+  void addToTableAppointment({required String groubValueMS}) {
     AppHelperGroub.items.add(
       TimeDayGroubModel(
         day: day!,
@@ -141,7 +146,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     emit(AddToTableDatabaseState());
   }
 
-  void deletefromTable({required int index}) {
+  //! Delete from Table Appointment
+  void deletefromTableAppointment({required int index}) {
     AppHelperGroub.items.remove(AppHelperGroub.items[index]);
     emit(DeleteFromTableDatabaseState());
   }

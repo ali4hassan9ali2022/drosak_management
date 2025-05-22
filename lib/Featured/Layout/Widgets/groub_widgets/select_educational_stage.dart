@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectEducationalStage extends StatelessWidget {
-  const SelectEducationalStage({super.key});
+  const SelectEducationalStage({super.key, this.onChanged});
+  final dynamic Function(dynamic)? onChanged;
   @override
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<DatabaseCubit>(context);
@@ -28,7 +29,7 @@ class SelectEducationalStage extends StatelessWidget {
               noResultFoundText: "لم يتم العثور على اسم المرحلة التعليمية",
               items: cubit.getData,
               // initialItem: "a",
-              onChanged: (value) {},
+              onChanged: onChanged,
               itemsListPadding: EdgeInsets.zero,
               headerBuilder: (context, selectedItem, enabled) {
                 return Text(selectedItem.name);

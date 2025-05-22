@@ -137,7 +137,7 @@ class CustomGroubTable extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    cubit.deletefromTable(index: i);
+                    cubit.deletefromTableAppointment(index: i);
                   },
                   icon: Icon(Icons.delete, color: Colors.white),
                 ),
