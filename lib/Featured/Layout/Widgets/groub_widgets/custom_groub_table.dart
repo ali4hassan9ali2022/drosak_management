@@ -1,7 +1,9 @@
 import 'package:drosak_management/Core/Helper/app_helper_groub.dart';
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGroubTable extends StatelessWidget {
@@ -9,6 +11,7 @@ class CustomGroubTable extends StatelessWidget {
   final bool isShow;
   @override
   Widget build(BuildContext context) {
+    var cubit = BlocProvider.of<DatabaseCubit>(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Table(
@@ -133,7 +136,9 @@ class CustomGroubTable extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    cubit.deletefromTable(index: i);
+                  },
                   icon: Icon(Icons.delete, color: Colors.white),
                 ),
               ],

@@ -134,10 +134,6 @@ class AddGroubData extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton.filled(
-              onPressed: () {},
-              icon: Icon(Icons.delete, color: Colors.white),
-            ),
             Text("ملاحظة", style: AppStyles.styleMedium14(context)),
           ],
         ),

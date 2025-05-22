@@ -140,4 +140,9 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     );
     emit(AddToTableDatabaseState());
   }
+
+  void deletefromTable({required int index}) {
+    AppHelperGroub.items.remove(AppHelperGroub.items[index]);
+    emit(DeleteFromTableDatabaseState());
+  }
 }

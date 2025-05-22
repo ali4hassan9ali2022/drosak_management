@@ -54,3 +54,4 @@ class SelectTimeDatabaseState extends DatabaseState{}
 class SelectDayDatabaseState extends DatabaseState{}
 class SelectMSDatabaseState extends DatabaseState{}
 class AddToTableDatabaseState extends DatabaseState{}
+class DeleteFromTableDatabaseState extends DatabaseState{}
