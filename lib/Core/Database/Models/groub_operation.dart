@@ -16,4 +16,14 @@ class GroubOperation extends SqFliteDatabase {
       values: model.toJson(),
     );
   }
+  Future<List<GroubDetailsModel>> getAllGroupData() async {
+    List<GroubDetailsModel> items = [];
+    List<Map<String, Object?>> data = await getData(
+      tableName: AppHelperGroub.groudTableName,
+    );
+    for (var item in data) {
+      items.add(GroubDetailsModel.fromJson(item));
+    }
+    return items;
+  }
 }
