@@ -20,6 +20,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   TextEditingController groubDecEdController = TextEditingController();
   XFile? profilePic;
   ItemStageModel? itemStageModelEducatioanlStage;
+  GroubDetailsModel? groubDetailsModel;
   EducationalStagesOperation educationalStagesOperation =
       EducationalStagesOperation();
   GroubOperation groubOperation = GroubOperation();
@@ -48,10 +49,10 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   }
 
   //! Add Groub
-  Future<bool> addGroub() async {
+  Future<int> addGroub() async {
     emit(LoadingAddGroup());
     try {
-      bool inseret = await groubOperation.insertGroub(
+      int inseret = await groubOperation.insertGroub(
         GroubDetailsModel(
           id: 0,
           name: groubNameEdController.text,
@@ -60,28 +61,28 @@ class DatabaseCubit extends Cubit<DatabaseState> {
         ),
       );
       log("inseret: $inseret");
-      if (!inseret) {
+      if (inseret == 0) {
         emit(FailureAddGroup(errMessage: "Error"));
-        return false;
+        return 0;
       }
       groubNameEdController.clear();
       groubDecEdController.clear();
       emit(SuccsesAddGroup());
       getAllGruopData();
-      return true;
+      return inseret;
     } catch (e) {
       emit(FailureAddGroup(errMessage: e.toString()));
     }
-    return false;
+    return 0;
   }
 
   //! Add Appointment
-  Future<bool> addAppointment() async {
+  Future<bool> addAppointment(int groupId) async {
     emit(LoadingAddAppointment());
     try {
       for (var appointment in AppHelperGroub.items) {
         GroubOperation groubOperation = GroubOperation();
-        bool inseret = await groubOperation.insertApponint(appointment);
+        bool inseret = await groubOperation.insertApponint(appointment, groupId);
         log("inseret: $inseret");
         if (!inseret) {
           emit(FailureAddAppointment(errMessage: "Error"));
@@ -207,6 +208,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
         day: day!,
         time: "${time!.hour} : ${time!.minute}",
         ms: groubValueMS,
+        groubId: groubDetailsModel!.id
       ),
     );
     emit(AddToTableDatabaseState());

@@ -13,10 +13,10 @@ class AppointmentModel {
     this.groubId = 0,
     this.id = 0,
   });
-  Map<String, Object> toJson() {
+  Map<String, Object> toJson(int groupId) {
     return {
       AppHelperGroub.appointmentId: id,
-      AppHelperGroub.appointmentIdToGroub: groubId,
+      AppHelperGroub.appointmentIdToGroub: groupId,
       AppHelperGroub.appointmentDay: day,
       AppHelperGroub.appointmentHour: time,
       AppHelperGroub.appointmentTime: ms,
@@ -25,6 +25,7 @@ class AppointmentModel {
 
   factory AppointmentModel.fromJson(json) {
     return AppointmentModel(
+      groubId: int.parse(json[AppHelperGroub.groudId].toString()),
       day: json[AppHelperGroub.appointmentDay],
       time: json[AppHelperGroub.appointmentHour],
       ms: json[AppHelperGroub.appointmentTime],

@@ -4,16 +4,16 @@ import 'package:drosak_management/Featured/Layout/Models/appointment_model.dart'
 import 'package:drosak_management/Featured/Layout/Models/groub_details_model.dart';
 
 class GroubOperation extends SqFliteDatabase {
-  Future<bool> insertGroub(GroubDetailsModel model) async {
-    return await inseretData(
+  Future<int> insertGroub(GroubDetailsModel model) async {
+    return await inseretReturnedId(
       tableName: AppHelperGroub.groudTableName,
       values: model.toJson(),
     );
   }
-  Future<bool> insertApponint(AppointmentModel model) async {
+  Future<bool> insertApponint(AppointmentModel model, int groupId) async {
     return await inseretData(
       tableName: AppHelperGroub.appointmentTableName,
-      values: model.toJson(),
+      values: model.toJson(groupId),
     );
   }
   Future<List<GroubDetailsModel>> getAllGroupData() async {

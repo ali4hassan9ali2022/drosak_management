@@ -167,9 +167,9 @@ class AddGroubData extends StatelessWidget {
                 requiredDage += "اختار مواعيد المجموعة";
               }
               if (requiredDage.isEmpty) {
-                bool isAdd = await cubit.addGroub();
-                if (isAdd == true) {
-                  if (await cubit.addAppointment()) {
+                int isAdd = await cubit.addGroub();
+                if (isAdd >=0) {
+                  if (await cubit.addAppointment(isAdd)) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

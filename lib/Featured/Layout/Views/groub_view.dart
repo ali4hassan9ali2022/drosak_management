@@ -22,7 +22,10 @@ class GroubView extends StatelessWidget {
             child: ListView.separated(
               physics: BouncingScrollPhysics(),
               itemBuilder:
-                  (context, index) => CustomGroubItem(index: index + 1),
+                  (context, index) => CustomGroubItem(
+                    index: index + 1,
+                    groubDetailsModel: state.itemGroupModel[index],
+                  ),
               separatorBuilder:
                   (context, index) => SizedBox(height: SizeConfig.kHeight16),
               itemCount: state.itemGroupModel.length,

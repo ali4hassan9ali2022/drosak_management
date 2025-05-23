@@ -1,12 +1,13 @@
 import 'package:drosak_management/Core/Utils/app_color.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Featured/Layout/Models/groub_details_model.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/groub_widgets/card_groub_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCardGroub extends StatelessWidget {
-  const CustomCardGroub({super.key});
-
+  const CustomCardGroub({super.key, required this.groubDetailsModel});
+final GroubDetailsModel groubDetailsModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +30,9 @@ class CustomCardGroub extends StatelessWidget {
           side: BorderSide(color: AppColor.primaryColor, width: 1),
         ),
       ),
-      child: CardGroubData(),
+      child: CardGroubData(
+        groubDetailsModel: groubDetailsModel,
+      ),
     );
   }
 }

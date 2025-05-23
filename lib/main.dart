@@ -5,12 +5,14 @@ import 'package:drosak_management/Core/Utils/size_config.dart';
 import 'package:drosak_management/Cubit/app_cubit/app_cubit.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_cubit.dart';
 import 'package:drosak_management/Featured/Splash/Views/splash_view.dart';
+import 'package:drosak_management/simple_bloc_opserver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = SimpleBlocOpserver();
   runApp(
     DevicePreview(
       enabled: !isEnabled,

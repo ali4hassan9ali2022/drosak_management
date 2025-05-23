@@ -1,13 +1,14 @@
 import 'package:drosak_management/Core/Utils/app_styles.dart';
 import 'package:drosak_management/Core/Utils/assets.dart';
 import 'package:drosak_management/Core/Utils/size_config.dart';
+import 'package:drosak_management/Featured/Layout/Models/groub_details_model.dart';
 import 'package:drosak_management/Featured/Layout/Widgets/groub_widgets/custom_groub_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardGroubData extends StatelessWidget {
-  const CardGroubData({super.key});
-
+  const CardGroubData({super.key, required this.groubDetailsModel});
+  final GroubDetailsModel groubDetailsModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,7 +25,7 @@ class CardGroubData extends StatelessWidget {
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
-                    "المجموعة الأولي بنات / الصف الأول الإعدادي",
+                    groubDetailsModel.name,
                     style: AppStyles.styleMedium16(context),
                   ),
                 ),
@@ -34,10 +35,10 @@ class CardGroubData extends StatelessWidget {
                 Text(
                   overflow: TextOverflow.ellipsis,
                   maxLines: 3,
-                  "الملاحظات : ",
+                  "الملاحظات : ${groubDetailsModel.note}",
                   style: AppStyles.styleMedium10(
                     context,
-                  ).copyWith(color: Color(0xff514C4C)),
+                  ).copyWith(color: Colors.white),
                 ),
               ],
             ),

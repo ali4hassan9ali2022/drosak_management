@@ -117,6 +117,14 @@ class SqFliteDatabase extends Crud {
     int inseret = await _database!.insert(tableName, values);
     return inseret > 0 ? true : false;
   }
+  Future<int> inseretReturnedId({
+    required String tableName,
+    required Map<String, Object> values,
+  }) async {
+    await _initDatabse();
+    int inseret = await _database!.insert(tableName, values);
+    return inseret;
+  }
 
   //! Update Data
   @override
