@@ -26,6 +26,8 @@ class _MainViewState extends State<MainView> {
       BlocProvider.of<AppCubit>(context).changeBottomNavBar(initIndex);
       if (initIndex == 0) {
         BlocProvider.of<DatabaseCubit>(context).getAllEducationalData();
+      } else if (initIndex == 1) {
+        BlocProvider.of<DatabaseCubit>(context).getAllGruopData();
       }
       initialized = true;
     }
@@ -48,6 +50,8 @@ class _MainViewState extends State<MainView> {
                 appCubit.changeBottomNavBar(value);
                 if (value == 0) {
                   databaseCubit.getAllEducationalData();
+                } else if (value == 1) {
+                  databaseCubit.getAllGruopData();
                 }
               },
               currentIndex: appCubit.currentIndex,
@@ -60,6 +64,8 @@ class _MainViewState extends State<MainView> {
                 appCubit.changePageMainView(value);
                 if (value == 0) {
                   databaseCubit.getAllEducationalData();
+                } else if (value == 1) {
+                  databaseCubit.getAllGruopData();
                 }
               },
               itemBuilder: (context, index) {

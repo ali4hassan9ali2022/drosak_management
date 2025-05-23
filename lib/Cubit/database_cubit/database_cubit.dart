@@ -60,13 +60,14 @@ class DatabaseCubit extends Cubit<DatabaseState> {
         ),
       );
       log("inseret: $inseret");
-      if(!inseret) {
+      if (!inseret) {
         emit(FailureAddGroup(errMessage: "Error"));
         return false;
       }
       groubNameEdController.clear();
       groubDecEdController.clear();
       emit(SuccsesAddGroup());
+      getAllGruopData();
       return true;
     } catch (e) {
       emit(FailureAddGroup(errMessage: e.toString()));
@@ -82,8 +83,8 @@ class DatabaseCubit extends Cubit<DatabaseState> {
         GroubOperation groubOperation = GroubOperation();
         bool inseret = await groubOperation.insertApponint(appointment);
         log("inseret: $inseret");
-        if(!inseret) {
-          emit(FailureAddAppointment(errMessage:"Error"));
+        if (!inseret) {
+          emit(FailureAddAppointment(errMessage: "Error"));
           return false;
         }
         emit(SuccsesAddAppointment());
@@ -101,24 +102,25 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     emit(LoadingGetDataEducational());
     try {
       getData = await educationalStagesOperation.getAllEducationalData();
-      log("Data is $getData");
-      log("Data is ${getData.length}");
+      log("Educational Data is $getData");
+      log("Educational Data is ${getData.length}");
       emit(SuccsesGetDataEducational(itemStageModel: getData));
     } catch (e) {
       emit(FailureGetDateEducational(errMessage: "Error"));
     }
   }
+
   //! Get Group Data
-  List<ItemStageModel> getGroupData = [];
+  List<GroubDetailsModel> getGroupData = [];
   void getAllGruopData() async {
-    emit(LoadingGetDataEducational());
+    emit(LoadingGetDataGroup());
     try {
-      getData = await educationalStagesOperation.getAllEducationalData();
-      log("Data is $getData");
-      log("Data is ${getData.length}");
-      emit(SuccsesGetDataEducational(itemStageModel: getData));
+      getGroupData = await groubOperation.getAllGroupData();
+      log("Group Data is $getGroupData");
+      log("Group Data is ${getGroupData.length}");
+      emit(SuccsesGetDataGroup(itemGroupModel: getGroupData));
     } catch (e) {
-      emit(FailureGetDateEducational(errMessage: "Error"));
+      emit(FailureGetDateGroup(errMessage: "Error"));
     }
   }
 
