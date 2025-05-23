@@ -2,10 +2,12 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:drosak_management/Core/Database/Models/educational_stages_operation.dart';
+import 'package:drosak_management/Core/Database/Models/groub_operation.dart';
 import 'package:drosak_management/Core/Helper/app_helper_groub.dart';
 import 'package:drosak_management/Cubit/database_cubit/database_state.dart';
+import 'package:drosak_management/Featured/Layout/Models/appointment_model.dart';
+import 'package:drosak_management/Featured/Layout/Models/groub_details_model.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
-import 'package:drosak_management/Featured/Layout/Models/time_day_groub_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,11 +17,12 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   TextEditingController nameEdController = TextEditingController();
   TextEditingController descEdController = TextEditingController();
   TextEditingController groubNameEdController = TextEditingController();
+  TextEditingController groubDecEdController = TextEditingController();
   XFile? profilePic;
-  ItemStageModel? itemStageModel;
   ItemStageModel? itemStageModelEducatioanlStage;
   EducationalStagesOperation educationalStagesOperation =
       EducationalStagesOperation();
+  GroubOperation groubOperation = GroubOperation();
   GlobalKey<FormState> keyState = GlobalKey();
   //! Add Educational
   void addNewEducatonal() async {
@@ -42,6 +45,54 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     } catch (e) {
       emit(FailureAddEducational(errMessage: "Error"));
     }
+  }
+
+  //! Add Groub
+  Future<bool> addGroub() async {
+    emit(LoadingAddGroup());
+    try {
+      bool inseret = await groubOperation.insertGroub(
+        GroubDetailsModel(
+          id: 0,
+          name: groubNameEdController.text,
+          note: groubDecEdController.text,
+          educationalStageId: itemStageModelEducatioanlStage!.id,
+        ),
+      );
+      log("inseret: $inseret");
+      if(!inseret) {
+        emit(FailureAddGroup(errMessage: "Error"));
+        return false;
+      }
+      groubNameEdController.clear();
+      groubDecEdController.clear();
+      emit(SuccsesAddGroup());
+      return true;
+    } catch (e) {
+      emit(FailureAddGroup(errMessage: e.toString()));
+    }
+    return false;
+  }
+
+  //! Add Appointment
+  Future<bool> addAppointment() async {
+    emit(LoadingAddAppointment());
+    try {
+      for (var appointment in AppHelperGroub.items) {
+        GroubOperation groubOperation = GroubOperation();
+        bool inseret = await groubOperation.insertApponint(appointment);
+        log("inseret: $inseret");
+        if(!inseret) {
+          emit(FailureAddAppointment(errMessage:"Error"));
+          return false;
+        }
+        emit(SuccsesAddAppointment());
+        return true;
+      }
+    } catch (e) {
+      emit(FailureAddAppointment(errMessage: e.toString()));
+    }
+    return false;
   }
 
   //! Get Educatioanl Data
@@ -137,7 +188,7 @@ class DatabaseCubit extends Cubit<DatabaseState> {
   //! Add To Table Appointment
   void addToTableAppointment({required String groubValueMS}) {
     AppHelperGroub.items.add(
-      TimeDayGroubModel(
+      AppointmentModel(
         day: day!,
         time: "${time!.hour} : ${time!.minute}",
         ms: groubValueMS,

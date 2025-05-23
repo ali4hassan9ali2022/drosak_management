@@ -1,4 +1,4 @@
-import 'package:drosak_management/Featured/Layout/Models/time_day_groub_model.dart';
+import 'package:drosak_management/Featured/Layout/Models/appointment_model.dart';
 
 abstract class AppHelperGroub {
   //! Groub Table
@@ -14,5 +14,5 @@ abstract class AppHelperGroub {
   static const String appointmentHour = "appointmentHour";
   static const String appointmentTime = "appointmentTime";
   static const String appointmentIdToGroub = "appointmentIdToGroub";
-  static List<TimeDayGroubModel> items = [];
+  static List<AppointmentModel> items = [];
 }

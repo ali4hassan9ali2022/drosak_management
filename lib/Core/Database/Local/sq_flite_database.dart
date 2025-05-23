@@ -69,7 +69,7 @@ class SqFliteDatabase extends Crud {
       "${AppHelperGroub.groudNote} TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
       "${AppHelperGroub.groudIdToEducational} INTEGER)",
     );
-    //! Create Groub Table
+    //! Create Appointment Table
     await db.execute(
       "CREATE TABLE ${AppHelperGroub.appointmentTableName} "
       "(${AppHelperGroub.appointmentId} INTEGER PRIMARY KEY AUTOINCREMENT,"

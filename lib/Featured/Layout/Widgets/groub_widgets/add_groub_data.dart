@@ -41,6 +41,15 @@ class AddGroubData extends StatelessWidget {
           fillColor: Colors.white,
           hintText: "إسم المجموعة",
         ),
+        SizedBox(height: SizeConfig.kWidth10),
+        CustomTextFormField(
+          errorStyle: TextStyle(color: Colors.white),
+          controller: cubit.groubDecEdController,
+          textAlign: TextAlign.end,
+          filled: true,
+          fillColor: Colors.white,
+          hintText: "وصف المجموعة",
+        ),
         Divider(height: 20),
         SelectEducationalStage(
           onChanged: (vlaue) {
@@ -146,7 +155,7 @@ class AddGroubData extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 26.w),
           child: GestureDetector(
-            onTap: () {
+            onTap: () async {
               String requiredDage = "";
               if (cubit.groubNameEdController.text.trim().isEmpty) {
                 requiredDage += "اختار اسم المجموعة";
@@ -158,6 +167,21 @@ class AddGroubData extends StatelessWidget {
                 requiredDage += "اختار مواعيد المجموعة";
               }
               if (requiredDage.isEmpty) {
+                bool isAdd = await cubit.addGroub();
+                if (isAdd == true) {
+                  if (await cubit.addAppointment()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          "Add Appointment Done",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    );
+                    log("Add Appointment Done");
+                  }
+                }
+                Navigator.pop(context);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

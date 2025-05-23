@@ -55,3 +55,19 @@ class SelectDayDatabaseState extends DatabaseState{}
 class SelectMSDatabaseState extends DatabaseState{}
 class AddToTableDatabaseState extends DatabaseState{}
 class DeleteFromTableDatabaseState extends DatabaseState{}
+class LoadingAddGroup extends DatabaseState {}
+class SuccsesAddGroup extends DatabaseState {}
+class FailureAddGroup extends DatabaseState {
+  final String errMessage;
+
+  FailureAddGroup({required this.errMessage});
+
+}
+class LoadingAddAppointment extends DatabaseState {}
+class SuccsesAddAppointment extends DatabaseState {}
+class FailureAddAppointment extends DatabaseState {
+  final String errMessage;
+
+  FailureAddAppointment({required this.errMessage});
+
+}
