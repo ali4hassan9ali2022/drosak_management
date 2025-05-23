@@ -108,6 +108,19 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       emit(FailureGetDateEducational(errMessage: "Error"));
     }
   }
+  //! Get Group Data
+  List<ItemStageModel> getGroupData = [];
+  void getAllGruopData() async {
+    emit(LoadingGetDataEducational());
+    try {
+      getData = await educationalStagesOperation.getAllEducationalData();
+      log("Data is $getData");
+      log("Data is ${getData.length}");
+      emit(SuccsesGetDataEducational(itemStageModel: getData));
+    } catch (e) {
+      emit(FailureGetDateEducational(errMessage: "Error"));
+    }
+  }
 
   //! Search
   List<ItemStageModel> searchData = [];

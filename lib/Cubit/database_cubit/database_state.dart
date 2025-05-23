@@ -1,3 +1,4 @@
+import 'package:drosak_management/Featured/Layout/Models/groub_details_model.dart';
 import 'package:drosak_management/Featured/Layout/Models/item_stage_model.dart';
 
 abstract class DatabaseState {}
@@ -69,5 +70,17 @@ class FailureAddAppointment extends DatabaseState {
   final String errMessage;
 
   FailureAddAppointment({required this.errMessage});
+
+}
+class LoadingGetDataGroup extends DatabaseState {}
+class SuccsesGetDataGroup extends DatabaseState {
+  final List<GroubDetailsModel> itemStageModel;
+
+  SuccsesGetDataGroup({required this.itemStageModel});
+}
+class FailureGetDateGroup extends DatabaseState {
+  final String errMessage;
+
+  FailureGetDateGroup({required this.errMessage});
 
 }
